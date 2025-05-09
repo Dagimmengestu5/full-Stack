@@ -22,12 +22,13 @@ margin: 30px;
  grid-template-rows: 400px 400px 400px 400px;
 /* column-gap: 100px;
 row-gap: 100px; */
-border-radius: 30px;
+border-radius: 5px;
 padding:50px 300px 50px 0;
 justify-content: space-around;
 align-items: center;
 }
 .image {
+ /* background-color: black; */
  width: 320px;
  height: auto;
  border-radius: 50px;
