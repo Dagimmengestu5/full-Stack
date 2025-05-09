@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lunasima:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+
 * {
  margin: 0;
  padding: 0;
 }
 body{
- font-family:pacifico , 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+font-family:ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; ;
+font-size:16px ;
+}
+h1 {
+ font-family:pacifico;
 }
 .navbar{
  display: flex;
@@ -90,4 +95,7 @@ margin-top: 100px;
  position: relative;
  left: 100px;
  margin-bottom: 10px;
+ }
+ .back {
+  font-family: pacifico;
  }
