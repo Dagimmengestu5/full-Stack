@@ -1,0 +1,38 @@
+@import "tailwindcss";
+* {
+ margin: 0;
+ padding: 0;
+}
+body{
+ background-color: black;
+}
+
+h1 {
+ font-family: 'Courier New', Courier, monospace;
+ color: black;
+ background-color: white;
+ padding: 30px;
+ text-align: center;
+ border: 2px solid black;
+ border-radius: 70px;
+ margin: 50px;
+}
+.first{
+ max-width: 300px;
+ border: 3px solid white;
+ border-radius: 10px;
+ padding: 10px;
+}
+
+li {
+ padding-left: 30px;
+ list-style: circle;
+ list-style-type: circle;
+ list-style-position: inside;
+ color: white;
+}
+li a {
+ color: white;
+ font-weight: bold;
+ text-decoration: none;
+}
