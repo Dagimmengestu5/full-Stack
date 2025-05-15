@@ -151,7 +151,7 @@ body {
   
 .dropdown:hover .dropdown-content {
     display:inline-block;
-    position: absolute;
+    /* position: absolut1; */
     left: 0;
 }
   
