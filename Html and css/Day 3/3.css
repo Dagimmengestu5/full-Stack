@@ -208,6 +208,145 @@ width: 100%;
     object-fit: cover;
     border-radius: 15px;
 }
+.discover-section{
+    position: relative;
+    height: 100vh;
+    margin-top: 80px;
+}
+.discover-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.discover-overlay{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a1a;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.6),rgba(255,255,255,0.9));
+    /* margin: 0 20px; */
+}
+
+.discover-header {
+    padding: 48px 0;
+    max-width: 1200px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.discover-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+
+}
+.discover-content {
+    max-width: 900px;
+    margin: 0 5px;
+}
+.descover-heading{
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.discover-discription {
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+
+}
+.discover-features{
+    position: absolute;
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    border: 1px solid darkblue;
+    top: 400px;
+
+}
+.discover-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 200px;
+    border: 1px solid darkblue;
+}
+.discover-icon{
+    background-color: #110111;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+}
+.discover-text h3 {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1f2957;
+}
+.discover-text p {
+
+}
+.cta{
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    overflow: hidden;
+}
+.cta-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cta-overlay {
+    position: absolute;
+    inset: 0;
+    background:linear-gradient(rgba(0,0,0,0.7));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cta-content{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    gap: 60px;
+    width: 100%;
+}
+.cta-title{
+    font-size: 30px;
+    font-weight: 600;
+    width: 100%;
+    color: #cfd1ee;
+    align-self: center;
+}
+.cta-text-button{
+    width: 100%;
+
+}
+.cta-discription {
+    font-size: 24px;
+    color: #cfd1cc;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+}
+.cta-fild , .cta-outline {
+    width: 170px;
+
+}
+
 /* .grid-gallery-tall{
     padding: -20px;
     grid-row: span 2;
