@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
-*{
+*{box-sizing: 0;
     padding: 0;
     margin: 0;
 }
@@ -348,8 +348,49 @@ width: 100%;
     width: 170px;
 
 }
+.footer-section {
+    background-color: #fff;
+    padding: 10px;
+    /* margin-top: 40px; */
+}
+.footer-head{
+    /* background-color: #dad0d0; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.footer-logo{
+    font-size: 28px;
+}
+.footer-logo span {
+    color: rgba(7, 7, 7, 0.2);
+    opacity: 0.9;
+}
+.footer-link a{
+    color: #000;
+    /* background-color: #000; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   text-decoration: none;
+}
+.footer-link ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: 70px;
 
->>>>>>> 1f61570e169297e142fb40b5d27a5633c5f30e4a
+}
+.footer-icon a{
+    font-size: 26px;
+    padding: 15px;
+}
+hr {
+    /* padding: 10px; */
+    margin: 20px;
+}
 /* .grid-gallery-tall{
     padding: -20px;
     grid-row: span 2;
