@@ -391,7 +391,7 @@ width: 100%;
     color: #fff;
 }
 hr {
-    /* padding: 10px; */
+    /* padding: 11px; */
     margin: 10px;
 }
 .footer-icon{
@@ -408,7 +408,12 @@ hr {
   text-align: center;
   
 }
-/* .grid-gallery-tall{
+@media screen and (max-width:600px) {
+    .responsive {
+      width: 100%;
+    }
+  }
+.grid-gallery-tall{
     padding: -20px;
     grid-row: span 2;
     margin-top:-48px;
@@ -417,7 +422,7 @@ hr {
 .grid-gallery-short{
     padding-top: 20px;
     padding-bottom: 20px;
-}  */
+}  
 .change {
     display: flex;
     justify-content: space-between;
