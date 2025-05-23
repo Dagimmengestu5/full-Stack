@@ -147,6 +147,30 @@ align-items: center;
         flex-direction: column;
         text-align: center;
     }
+    .navbar{
+        display: flex;
+        justify-content: space-between;
+        font-size: 2rem;
+    }
+    .navbar button{
+        padding-left:  25px;
+    }
+    .navbar ul{
+         display: flex;
+        justify-content: space-between;
+        margin-top: -15px;
+        gap: 0;
+        font-size: 3rem;
+        
+    }
+    .navbar img{
+        font-size: 4rem;
+        /* background-color: darkblue; */
+        width: 20rem;
+    }
+    .hero-heading {
+        margin-top: -70px;
+    }
 }
 
 
