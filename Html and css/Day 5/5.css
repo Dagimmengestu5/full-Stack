@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
+*{
+ padding: 0;
+ margin: 0;
+}
+
+:root {
+  --primary-color: #3685fb;
+  --primary-color-dark: #2f73d9;
+  --secondary-color: #fafcff;
+  --text-dark: #0d213f;
+  --text-light: #767268;
+  --extra-light: #ffffff;
+  --max-width: 1200px;
+}
+
+body{
+ background-color: var(--secondary-color);
+ font-family: poppins;
+}
+.navbar {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 10px;
+ margin: 30px;
+}
+.logo{
+ color: var(--text-dark);
+ text-align: center;
+ font-weight: bold;
+ font-size: 25px;
+ margin: 0 40px ;
+}
+.page ul{
+ display: flex;
+ align-items: center;
+ list-style: none;
+ gap: 60px;
+}
+.page a {
+ text-decoration: none;
+ color: var(--text-light);
+}
+
+.contact{
+ color: var(--secondary-color);
+ border: 2px solid none;
+ background-color: #339af0;
+ padding: 7px 30px;
+ border-radius: 50px;
+}
+.first-section{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+.fs-image{
+ display: flex;
+ position: relative;
+ align-items: center;
+ /* padding: 90px; */
+ margin: 50px 50px;
+
+}
+.fs-img-1{
+ width: 350px;
+ height: auto;
+ border-radius: 30px;
+ border: 10px solid var(--extra-light);
+}
+.fs-img-2{
+ position: absolute;
+ width: 200px;
+ height: auto;
+ right: -150px;
+ bottom: 0;
+ border-radius: 30px;
+ border: 10px solid white;
+}
+.fs-title{
+ position: relative;
+ left: 80px;
+ display: block;
+ align-items: center;
+ justify-content: center;
+ /* border: 2px solid black; */
+ margin: 20px auto;
+ padding: 30px;
+ max-width: 550px;
+}
+.fs-title h3 {
+ text-align: start;
+ padding-bottom: 20px;
+}
+.fs-title h3 {
+color: var(--primary-color);
+font-size: 15px;
+}
+.fs-title h1{
+ color: var(--text-dark);
+ font-size: 60px;
+ letter-spacing: 0.5px;
+ line-height: 60px;
+ margin-bottom: 20px;
+}
+.fs-title p{
+ font-size: 20px;
+ margin-bottom: 20px;
+}
+.btn {
+ color: var(--secondary-color);
+ background-color: var(--primary-color);
+ padding: 15px 20px;
+ border-radius: 40px;
+ border: none;
+ /* margin-top: 100px; */
+}
+.fs-btn{
+ font-size: 20px;
+ padding: 10px 60px;
+ margin-bottom: 5px;
+}
+.buttons{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+.play{
+position: relative;
+ background-color: transparent;
+ width: 30px;
+ height: auto;
+ left: -35px;
+ top: -10px;
+}
+.story{
+ position: relative;
+ right: 30px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 15px;
+}
+.story-img{
+ margin-bottom: 20px;
+ width: 60px;
+ border-radius: 50px;
+ 
+}
+.story p {
+ position: relative;
+ right: 40px;
+}
