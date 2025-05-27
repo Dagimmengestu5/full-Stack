@@ -81,6 +81,7 @@ body{
 .fs-title{
  position: relative;
  left: 80px;
+ top: 50px;
  display: block;
  align-items: center;
  justify-content: center;
@@ -100,8 +101,8 @@ font-size: 15px;
 .fs-title h1{
  color: var(--text-dark);
  font-size: 60px;
- letter-spacing: 0.5px;
- line-height: 60px;
+ /* letter-spacing: 0.5px; */
+ line-height: 80px;
  margin-bottom: 20px;
 }
 .fs-title p{
@@ -120,6 +121,7 @@ font-size: 15px;
  font-size: 20px;
  padding: 10px 60px;
  margin-bottom: 5px;
+ cursor: pointer;
 }
 .buttons{
  display: flex;
