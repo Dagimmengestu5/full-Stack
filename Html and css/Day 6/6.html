@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .gallery-header {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .gallery-images {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .image-card {
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .image-card img {
+            width: 100%;
+            height: auto;
+        }
+        .view-all {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .view-all:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="gallery-container">
+    <div class="gallery-header">Our trip gallery that will inspire you</div>
+    <div class="gallery-images">
+        <div class="image-card">
+            <img src="../Day 5/assets/gallery-1.jpg" alt="Trip Image 1">
+        </div>
+        <div class="image-card">
+            <img src="../Day 5/assets/gallery-1.jpg" alt="Trip Image 2">
+        </div>
+        <div class="image-card">
+            <img src="../Day 5/assets/gallery-1.jpg"" alt="Trip Image 3">
+        </div>
+    </div>
+    <a href="#" class="view-all">View All</a>
+</div>
+
+</body>
+</html>

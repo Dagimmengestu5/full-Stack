@@ -51,9 +51,11 @@ body{
  border-radius: 50px;
 }
 .first-section{
+ max-width: 1200px;
  display: flex;
  align-items: center;
- justify-content: space-between;
+ justify-content: center;
+ margin: auto;
 }
 .fs-image{
  display: flex;
@@ -68,6 +70,7 @@ body{
  height: auto;
  border-radius: 30px;
  border: 10px solid var(--extra-light);
+ box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 .fs-img-2{
  position: absolute;
@@ -77,6 +80,7 @@ body{
  bottom: 0;
  border-radius: 30px;
  border: 10px solid white;
+ box-shadow: 0 5px 8px  rgba(0, 0, 0, 0.1);
 }
 .fs-title{
  position: relative;
