@@ -228,17 +228,18 @@ position: relative;
  font-size: 20px;
 }
 .th-img-1 p {
- padding: 0 20px;
+ padding: 5px 20px;
 }
 .th-img-btn{
  display: flex;
  align-items: center;
  justify-content: space-between;
- padding: 0 20px 20px 20px;
+ padding: 0 20px 20px 4px;
 }
 .th-img-btn span{
  color: var(--text-light);
  font-size: 13px;
+ 
 }
 .th-img-btn button {
  color: var(--primary-color);
