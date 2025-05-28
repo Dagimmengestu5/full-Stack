@@ -309,3 +309,28 @@ margin-top: 100px;
   font-size: 25px;
   margin: 10px 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.change {
+    display: flex;
+    justify-content: space-between;
+   }
+.change a{
+    font-weight: bold;
+    padding: 10px;
+    margin: 10px;
+    font-family: pacifico;
+    color: black;
+    text-decoration: none;
+}
+   
