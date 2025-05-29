@@ -165,6 +165,10 @@ position: relative;
 }
 .second-section h1{
   margin-left: 50px;
+  
+}
+.second-section p{
+  max-width: 550px;
 }
 .se-se-img {
   display: inline;
@@ -315,6 +319,7 @@ margin-top: 100px;
   align-items: center;
   justify-content: space-between;
   margin: 30px 0;
+  color: var(--text-light);
 }
 .se-title{
   max-width: 500px;
@@ -329,22 +334,24 @@ margin-top: 100px;
   font-size: 17px;
 }
 .se-form{
- max-width: 500px;
+ max-width: 600px;
  margin: 10px auto;
 }
 .se-form input{
-  width: 300px;
-  padding: 10px 80px 10px 10px;
+  font-size: 18px;
+  color: var(--secondary-color);
+  width: 400px;
+  padding: 20px 20px;
   border-radius: 50px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
   border: none;
 }
 .se-form button{
   position: relative;
-  padding: 13px 30px;
-  border-radius: 50px;
+  padding: 22px 40px;
+  border-radius: 30px;
   font-size: 15px;
-  right: 90px;
+  right: 60px;
   background-color: var(--primary-color);
   color: var(--secondary-color);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
@@ -368,9 +375,36 @@ margin-top: 100px;
   font-size: 20px;
   margin: 20px 0;
 }
-.ma-fo-1 ul {
+.ma-fo-1 span {
+  font-weight: 600;
+}
+.ma-fo-1 ul{
   list-style: none;
   font-size: 12px;
+  max-width: 250px;
+  color: var(--secondary-color);
+}
+.ma-fo-1 p{
+  list-style: none;
+  font-size: 12px;
+  max-width: 250px;
+  margin-top: 20px;
+}
+.ma-fo-1 li{
+ margin-top: 20px;
+}
+
+.footer h2{
+  text-align: center;
+  font-size: 15px;
+  font-weight: 100;
+  padding: 10px;
+}
+.up{
+margin-bottom: 90px;
+}
+.up2{
+  margin-bottom: 10px; 
 }
 
 
