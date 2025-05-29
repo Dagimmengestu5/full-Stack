@@ -309,7 +309,69 @@ margin-top: 100px;
   font-size: 25px;
   margin: 10px 0;
 }
-
+.search{
+  /* background-color: #0d213f; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+.se-title{
+  max-width: 500px;
+  margin: 10px 50px;
+}
+.se-title h1{
+  margin-top: 20px;
+  font-size: 40px;
+  color: var(--text-dark);
+}
+.se-title p{
+  font-size: 17px;
+}
+.se-form{
+ max-width: 500px;
+ margin: 10px auto;
+}
+.se-form input{
+  width: 300px;
+  padding: 10px 80px 10px 10px;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+.se-form button{
+  position: relative;
+  padding: 13px 30px;
+  border-radius: 50px;
+  font-size: 15px;
+  right: 90px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+.footer{
+  background-color: var(--text-dark);
+  margin-top: 80px;
+  color: var(--secondary-color);
+}
+.main-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.ma-fo-1{
+  max-width: 300px;
+  padding: 70px 0;
+}
+.ma-fo-1 h1 {
+  font-size: 20px;
+  margin: 20px 0;
+}
+.ma-fo-1 ul {
+  list-style: none;
+  font-size: 12px;
+}
 
 
 
