@@ -549,19 +549,31 @@ inset: 0;}
     /* width: 300px; */
   }
   .second-section{
-    max-width: 80%;
+    max-width: 100%;
     display: inline-block;
     justify-content: center;
     inset: 0;
   }
   .se-grid {
-    grid-template-columns: repeat(1, 1fr);
+    padding: 0;
+    margin: 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
     max-width: 100%;
-    inset: 0;
+    gap: 10px;
+    
+   
+  }
+  .se-img{
+    margin: 0;
+    padding: 0;
   }
   .se-grid img{
     display: block;
     justify-content: center;
+    max-width: 100%;
   }
   .th-title{
     max-width: 100%;
