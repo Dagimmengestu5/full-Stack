@@ -629,6 +629,11 @@ inset: 0;}
   max-width: 100%;
   /* margin: 2px auto; */
 }
+.main-footer{
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 .main-footer h1{
 font-size: 15px;
 padding: 0 10px;
