@@ -1,104 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dagim | Full Stack Developer</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script src="./checkers.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      transition: background 0.5s, color 0.5s;
+    }
+    .fade-slide {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease-in-out;
+    }
+    .fade-slide.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animate-entry {
+      animation: slideFadeIn 1s ease-out forwards;
+    }
+    @keyframes slideFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+      border: 2px solid #333;
+    }
+    .square {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dark-square {
+      background-color: #4b5563;
+    }
+    .light-square {
+      background-color: #f3f4f6;
+    }
+    .piece {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .red {
+      background-color: #dc2626;
+    }
+    .black {
+      background-color: #1f2937;
+    }
+    .king::after {
+      content: '👑';
+      font-size: 1.2em;
+      position: absolute;
+      color: yellow;
     }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-all duration-500 animate-entry">
+
+  <!-- Dark Mode Toggle -->
+  <div class="fixed top-4 right-4 z-50">
+    <button id="toggleDark" class="bg-gray-800 dark:bg-gray-100 text-white dark:text-black px-4 py-2 rounded-full shadow hover:scale-105 transition flex items-center gap-2">
+      <span id="toggleIcon">🌙</span>
+      <span id="toggleLabel">Dark Mode</span>
+    </button>
+  </div>
+
   <!-- Hero Section -->
-  <section class="bg-white py-20 px-4 text-center">
+  <section class="bg-white dark:bg-gray-800 py-20 px-4 text-center fade-slide">
+    <img src="profile.png" alt="Dagim Profile" class="mx-auto w-32 h-32 rounded-full object-cover shadow-lg mb-6">
     <h1 class="text-4xl md:text-6xl font-bold">Hi, I'm Dagim 👋</h1>
-    <p class="mt-4 text-xl text-gray-600">A Passionate Full Stack Developer</p>
+    <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">A Passionate Full Stack Developer</p>
     <a href="#contact" class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700">Hire Me</a>
   </section>
 
   <!-- About Me -->
-  <section class="py-16 px-6 max-w-5xl mx-auto">
+  <section class="py-16 px-6 max-w-5xl mx-auto fade-slide">
     <h2 class="text-3xl font-bold mb-4">About Me</h2>
-    <p class="text-gray-700 leading-relaxed">I'm a full stack developer with experience in building high-quality web applications using modern tech stacks including JavaScript, Python, Node.js, React, and more. I enjoy solving complex problems and bringing creative ideas to life.</p>
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">I'm a full stack developer with experience in building high-quality web applications using modern tech stacks including JavaScript, Python, Node.js, React, and more. I enjoy solving complex problems and bringing creative ideas to life.</p>
   </section>
 
   <!-- Skills -->
-  <section class="bg-gray-200 py-16 px-6">
+  <section class="bg-gray-200 dark:bg-gray-800 py-16 px-6 fade-slide">
     <div class="max-w-5xl mx-auto">
       <h2 class="text-3xl font-bold mb-6">Skills</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <span class="bg-white p-4 rounded shadow">HTML & CSS</span>
-        <span class="bg-white p-4 rounded shadow">JavaScript</span>
-        <span class="bg-white p-4 rounded shadow">React</span>
-        <span class="bg-white p-4 rounded shadow">Node.js</span>
-        <span class="bg-white p-4 rounded shadow">Express.js</span>
-        <span class="bg-white p-4 rounded shadow">MongoDB</span>
-        <span class="bg-white p-4 rounded shadow">Python</span>
-        <span class="bg-white p-4 rounded shadow">Django</span>
-        <span class="bg-white p-4 rounded shadow">Postgres</span>
-        <span class="bg-white p-4 rounded shadow">Next.js</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">HTML & CSS</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">JavaScript</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">React</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Node.js</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Express.js</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">MongoDB</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Python</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Django</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Postgres</span>
+        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Next.js</span>
       </div>
     </div>
   </section>
 
   <!-- Projects -->
-  <section class="py-16 px-6 max-w-5xl mx-auto">
+  <section class="py-16 px-6 max-w-5xl mx-auto fade-slide">
     <h2 class="text-3xl font-bold mb-6">Projects</h2>
     <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-white p-6 rounded shadow">
-        <h3 class="text-xl font-semibold">Project One</h3>
-        <p class="text-gray-600 mt-2">I have created a website named Pathway travel that includes the best trip packages which helps people to choose their place to visit. <a class="bg-gray-200" href="../Day 5/5.html"> you can visit using this link
- 
-        </a> </p>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded shadow">
+        <h3 class="text-xl font-semibold">Pathway Travel</h3>
+        <p class="text-gray-600 dark:text-gray-300 mt-2">A website with trip packages to help people choose destinations. <a class="text-blue-500" href="../Day 5/5.html">Visit Link</a></p>
       </div>
-      <div class="bg-white p-6 rounded shadow">
-        <h3 class="text-xl font-semibold">Project Two</h3>
-        <p class="text-gray-600 mt-2">This project is a website about base club lounge that gives full information about the lounge its location, its services and  </p>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded shadow">
+        <h3 class="text-xl font-semibold">Base Club Lounge</h3>
+        <p class="text-gray-600 dark:text-gray-300 mt-2">Website about lounge services, location, and offers.</p>
       </div>
     </div>
   </section>
 
+  <!-- Games Section (Checkers) -->
+  <section class="bg-gray-100 dark:bg-gray-900 py-16 px-6 fade-slide text-center">
+    <h2 class="text-3xl font-bold mb-4">Checkers Game</h2>
+    <div id="gameSection" class="max-w-xl mx-auto">
+      <div class="mb-4">
+        <button onclick="startGame('single')" class="bg-blue-600 text-white px-4 py-2 rounded m-2">Single Player</button>
+        <button onclick="startGame('local')" class="bg-green-600 text-white px-4 py-2 rounded m-2">Local Multiplayer</button>
+        <button onclick="resetGame()" class="bg-red-600 text-white px-4 py-2 rounded m-2">Reset</button>
+      </div>
+      <div id="gameStatus" class="text-xl mb-4"></div>
+      <div id="board" class="board"></div>
+    </div>
+  </section>
+
   <!-- Work Experience -->
-  <section class="bg-gray-200 py-16 px-6">
+  <section class="bg-gray-200 dark:bg-gray-800 py-16 px-6 fade-slide">
     <div class="max-w-5xl mx-auto">
       <h2 class="text-3xl font-bold mb-6">Work Experience</h2>
       <div>
         <h3 class="text-xl font-semibold">Full Stack Developer @ Droga Consulting</h3>
-        <p class="text-gray-600">Jan 2023 – Present</p>
-        <p class="mt-2">Details of your role, achievements, and technologies used.</p>
+        <p class="text-gray-600 dark:text-gray-300">Jan 2023 – Present</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-200">Details of your role, achievements, and technologies used.</p>
       </div>
     </div>
   </section>
 
   <!-- Education -->
-  <section class="py-16 px-6 max-w-5xl mx-auto">
+  <section class="py-16 px-6 max-w-5xl mx-auto fade-slide">
     <h2 class="text-3xl font-bold mb-6">Education</h2>
     <div>
       <h3 class="text-xl font-semibold">CPU Collage</h3>
-      <p class="text-gray-600">Diploma, Hardware Networking and Service, 2019</p>
-      <p class="text-gray-600">Degree, Computer Science, 2023</p>
+      <p class="text-gray-600 dark:text-gray-300">Diploma, Hardware Networking and Service, 2019</p>
+      <p class="text-gray-600 dark:text-gray-300">Degree, Computer Science, 2023</p>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="bg-white py-16 px-6 max-w-3xl mx-auto">
+  <section id="contact" class="bg-white dark:bg-gray-800 py-16 px-6 max-w-3xl mx-auto fade-slide">
     <h2 class="text-3xl font-bold mb-6 text-center">Contact Me</h2>
     <form class="grid gap-4">
-      <input type="text" placeholder="Your Name" class="p-3 border rounded" />
-      <input type="email" placeholder="Your Email" class="p-3 border rounded" />
-      <textarea rows="5" placeholder="Your Message" class="p-3 border rounded"></textarea>
+      <input type="text" placeholder="Your Name" class="p-3 border rounded dark:bg-gray-700 dark:text-white" />
+      <input type="email" placeholder="Your Email" class="p-3 border rounded dark:bg-gray-700 dark:text-white" />
+      <textarea rows="5" placeholder="Your Message" class="p-3 border rounded dark:bg-gray-700 dark:text-white"></textarea>
       <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded hover:bg-blue-700">Send</button>
     </form>
   </section>
 
   <!-- Footer -->
-  <footer class="text-center py-6 bg-gray-800 text-white mt-12">
+  <footer class="text-center py-6 bg-gray-800 text-white mt-12 fade-slide">
     <p>&copy; 2025 Dagim. All rights reserved.</p>
   </footer>
+
+  <!-- Scripts -->
+  <script src="checkers.js"></script>
+  <script>
+    // Dark Mode Toggle
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+    const icon = document.getElementById('toggleIcon');
+    const label = document.getElementById('toggleLabel');
+    toggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      icon.innerText = isDark ? '☀️' : '🌙';
+      label.innerText = isDark ? 'Light Mode' : 'Dark Mode';
+    });
+
+    // Entry Animation
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.fade-slide').forEach((el, i) => {
+        setTimeout(() => el.classList.add('show'), i * 150);
+      });
+    });
+
+    // Include inline Checkers game logic
+    // You can paste your full checkers game logic from your previous code here or let me know if you'd like me to include it directly inline now.
+
+    
+  </script>
 </body>
 </html>

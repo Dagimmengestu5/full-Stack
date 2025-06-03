@@ -1,70 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            padding: 20px;
-        }
-        .gallery-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .gallery-header {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .gallery-images {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .image-card {
-            width: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .image-card img {
-            width: 100%;
-            height: auto;
-        }
-        .view-all {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .view-all:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkers Game</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
+    h1 { margin-top: 20px; }
+    #board { display: grid; grid-template-columns: repeat(8, 60px); width: 480px; margin: 20px auto; }
+    .cell { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; }
+    .black { background-color: #769656; }
+    .white { background-color: #eeeed2; }
+    .piece { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+    .red { background-color: red; }
+    .black-piece { background-color: black; }
+    .king { border: 3px solid gold; }
+    .highlight { outline: 2px solid yellow; }
+    #status { font-size: 1.2em; margin-bottom: 10px; }
+    #controls { margin: 10px; }
+    button { padding: 10px; margin: 5px; }
+  </style>
 </head>
 <body>
+  <h1>Checkers</h1>
+  <div id="controls">
+    <button onclick="startGame('single', 'medium')">Single Player</button>
+    <button onclick="startGame('multiplayer')">Multiplayer</button>
+  </div>
+  <div id="status"></div>
+  <div id="board"></div>
 
-<div class="gallery-container">
-    <div class="gallery-header">Our trip gallery that will inspire you</div>
-    <div class="gallery-images">
-        <div class="image-card">
-            <img src="../Day 5/assets/gallery-1.jpg" alt="Trip Image 1">
-        </div>
-        <div class="image-card">
-            <img src="../Day 5/assets/gallery-1.jpg" alt="Trip Image 2">
-        </div>
-        <div class="image-card">
-            <img src="../Day 5/assets/gallery-1.jpg"" alt="Trip Image 3">
-        </div>
-    </div>
-    <a href="#" class="view-all">View All</a>
-</div>
+  <script>
+    let board = [];
+    let selectedPiece = null;
+    let validMoves = [];
+    let currentPlayer = 'red';
+    let gameMode = 'single';
+    let aiDifficulty = 'medium';
 
+    function createInitialBoard() {
+      const b = [];
+      for (let row = 0; row < 8; row++) {
+        b[row] = [];
+        for (let col = 0; col < 8; col++) {
+          if ((row + col) % 2 === 1) {
+            if (row < 3) b[row][col] = { color: 'black', king: false };
+            else if (row > 4) b[row][col] = { color: 'red', king: false };
+            else b[row][col] = null;
+          } else b[row][col] = null;
+        }
+      }
+      return b;
+    }
+
+    function renderBoard() {
+      const boardDiv = document.getElementById('board');
+      boardDiv.innerHTML = '';
+      for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+          const cell = document.createElement('div');
+          cell.className = `cell ${(row + col) % 2 === 0 ? 'white' : 'black'}`;
+          cell.onclick = () => cellClick(row, col);
+          const piece = board[row][col];
+          if (piece) {
+            const pieceDiv = document.createElement('div');
+            pieceDiv.className = `piece ${piece.color} ${piece.king ? 'king' : ''}`;
+            cell.appendChild(pieceDiv);
+          }
+          if (validMoves.some(m => m.to.row === row && m.to.col === col)) {
+            cell.classList.add('highlight');
+          }
+          boardDiv.appendChild(cell);
+        }
+      }
+    }
+
+    function cellClick(row, col) {
+      const piece = board[row][col];
+      if (piece && piece.color === currentPlayer) {
+        selectedPiece = { row, col };
+        validMoves = getValidMoves(row, col);
+      } else if (selectedPiece && validMoves.some(m => m.to.row === row && m.to.col === col)) {
+        const move = validMoves.find(m => m.to.row === row && m.to.col === col);
+        makeMove(selectedPiece.row, selectedPiece.col, row, col);
+      }
+      renderBoard();
+    }
+
+    function getValidMoves(row, col) {
+      const piece = board[row][col];
+      const directions = [
+        { dr: -1, dc: -1 }, { dr: -1, dc: 1 },
+        { dr: 1, dc: -1 }, { dr: 1, dc: 1 },
+      ];
+      return directions.flatMap(d => {
+        if (!piece.king && ((piece.color === 'red' && d.dr === -1) || (piece.color === 'black' && d.dr === 1))) return [];
+        const newRow = row + d.dr;
+        const newCol = col + d.dc;
+        const jumpRow = row + 2 * d.dr;
+        const jumpCol = col + 2 * d.dc;
+        const valid = [];
+        if (inBounds(newRow, newCol) && board[newRow][newCol] === null) {
+          valid.push({ from: { row, col }, to: { row: newRow, col: newCol } });
+        } else if (
+          inBounds(jumpRow, jumpCol) &&
+          board[newRow][newCol] && board[newRow][newCol].color !== piece.color &&
+          board[jumpRow][jumpCol] === null
+        ) {
+          valid.push({ from: { row, col }, to: { row: jumpRow, col: jumpCol }, jump: { row: newRow, col: newCol } });
+        }
+        return valid;
+      });
+    }
+
+    function inBounds(row, col) {
+      return row >= 0 && row < 8 && col >= 0 && col < 8;
+    }
+
+    function makeMove(fromRow, fromCol, toRow, toCol) {
+      const piece = board[fromRow][fromCol];
+      board[toRow][toCol] = piece;
+      board[fromRow][fromCol] = null;
+      if (Math.abs(fromRow - toRow) === 2) {
+        const jumpedRow = (fromRow + toRow) / 2;
+        const jumpedCol = (fromCol + toCol) / 2;
+        board[jumpedRow][jumpedCol] = null;
+      }
+      if ((piece.color === 'red' && toRow === 0) || (piece.color === 'black' && toRow === 7)) {
+        piece.king = true;
+      }
+      selectedPiece = null;
+      validMoves = [];
+      checkGameOver();
+      switchPlayer();
+      renderBoard();
+      if (gameMode === 'single' && currentPlayer === 'black') {
+        setTimeout(aiMove, 500);
+      }
+    }
+
+    function switchPlayer() {
+      currentPlayer = currentPlayer === 'red' ? 'black' : 'red';
+      updateStatus();
+    }
+
+    function updateStatus() {
+      const statusDiv = document.getElementById('status');
+      statusDiv.textContent = `${currentPlayer.toUpperCase()}'s Turn`;
+    }
+
+    function getAllValidMoves(color) {
+      const moves = [];
+      for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+          const piece = board[row][col];
+          if (piece && piece.color === color) {
+            const valid = getValidMoves(row, col);
+            moves.push(...valid);
+          }
+        }
+      }
+      return moves;
+    }
+
+    function aiMove() {
+      let moves = getAllValidMoves('black');
+      if (moves.length === 0) return checkGameOver();
+      let selected = getJumpMoves(moves) || moves[Math.floor(Math.random() * moves.length)];
+      makeMove(selected.from.row, selected.from.col, selected.to.row, selected.to.col);
+    }
+
+    function getJumpMoves(moves) {
+      const jumps = moves.filter(move => Math.abs(move.from.row - move.to.row) === 2);
+      return jumps.length ? jumps[Math.floor(Math.random() * jumps.length)] : null;
+    }
+
+    function checkGameOver() {
+      const redMoves = getAllValidMoves('red');
+      const blackMoves = getAllValidMoves('black');
+      if (redMoves.length === 0) {
+        alert('Black wins!');
+        board = createInitialBoard();
+        renderBoard();
+      } else if (blackMoves.length === 0) {
+        alert('Red wins!');
+        board = createInitialBoard();
+        renderBoard();
+      }
+    }
+
+    function startGame(mode = 'single', difficulty = 'medium') {
+      gameMode = mode;
+      aiDifficulty = difficulty;
+      board = createInitialBoard();
+      selectedPiece = null;
+      validMoves = [];
+      currentPlayer = 'red';
+      renderBoard();
+      updateStatus();
+    }
+
+    window.onload = () => {
+      startGame('single', 'medium');
+    };
+  </script>
 </body>
 </html>
