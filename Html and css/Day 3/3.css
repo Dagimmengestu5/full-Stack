@@ -12,7 +12,7 @@ body {
 }
 
 .navbar {
-    position: sticky;
+    /* position: sticky; */
     top: 0; /* Added for sticky to work effectively */
     z-index: 1000; /* Added to ensure navbar stays on top */
     display: flex;
@@ -168,12 +168,7 @@ body {
     z-index: 1;
 }
  
-.dropdown:hover .dropdown-content {
-    display:block; /* Changed from inline-block for consistency */
-    /* position: absolute; */ /* Already absolute in .dropdown-content */
-    left: 0;
-}
- 
+
 .image-content{
     max-width: 1200px;
     margin: 0 auto; /* Center the content */
@@ -236,20 +231,17 @@ body {
     padding: 10px;
     margin: 30px auto; /* Center paragraph */
     max-width: 800px; /* Control width */
+    
 }
 
 .grid-gallery{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 10px;
-    max-width: 1200px;
-    width: 95%; /* Use percentage for responsiveness */
-    margin: 0 auto; /* Center gallery */
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
 }
-
 .grid-gallery img {
     width: 100%; /* Make images responsive */
-    height: auto; /* Maintain aspect ratio, object-fit might not be needed if aspect ratios are consistent */
+    height: 300px; /* Maintain aspect ratio, object-fit might not be needed if aspect ratios are consistent */
     object-fit: cover; 
     border-radius: 15px;
 }
@@ -259,6 +251,8 @@ body {
     /* height: 100vh; */ /* Consider auto height based on content */
     padding: 60px 0; /* Added padding instead of fixed height */
     margin-top: 80px;
+    margin-bottom: 100px;
+    background: linear-gradient(to bottom,rgba(0,0,0,0.5) 0%,#fff 100%);
 }
 
 .discover-bg {
@@ -269,6 +263,8 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -1; /* Place behind content */
+    
+      
 }
 
 .discover-overlay{
@@ -281,6 +277,7 @@ body {
     color: #1a1a1a;
     /* background: linear-gradient(to bottom, rgba(255,255,255,0.7),rgba(255,255,255,0.9)); */ /* This will overlay on discover-bg */
     padding: 20px; /* Added padding */
+    
 }
 
 .discover-header {
