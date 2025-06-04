@@ -9,7 +9,21 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      transition: background 0.5s, color 0.5s;
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: #e2e8f0;
+    }
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
     .fade-slide {
       opacity: 0;
@@ -39,7 +53,7 @@
       width: 100%;
       max-width: 400px;
       margin: auto;
-      border: 2px solid #333; /* Will be dark in light mode, light in dark mode if you adjust border color for dark theme */
+      border: 2px solid #333;
     }
     .square {
       width: 100%;
@@ -49,13 +63,10 @@
       justify-content: center;
     }
     .dark-square {
-      background-color: #4b5563; /* Tailwind gray-600 for dark squares */
+      background-color: #4b5563;
     }
     .light-square {
-      /* For light mode, checkerboard's light squares can be a very light gray or white.
-         If body is white, and light-square is white, dark squares provide contrast.
-         If you want light squares to be distinct from a white body, use a light gray. */
-      background-color: #f3f4f6; /* Tailwind gray-100 for light squares - keeps checkerboard pattern distinct */
+      background-color: #1f2937;
     }
     .piece {
       width: 80%;
@@ -64,10 +75,10 @@
       cursor: pointer;
     }
     .red {
-      background-color: #dc2626; /* Tailwind red-600 */
+      background-color: #dc2626;
     }
     .black {
-      background-color: #1f2937; /* Tailwind gray-800 */
+      background-color: #111827;
     }
     .king::after {
       content: '★';
@@ -80,150 +91,153 @@
       width: 100%;
       text-shadow: 0 0 2px black;
     }
-    .ring-yellow-400 {
-        --tw-ring-color: #facc15;
+    .ring-amber-400 {
+        --tw-ring-color: #fbbf24;
     }
-    .ring-green-500 {
-        --tw-ring-color: #22c55e;
+    .ring-blue-500 {
+        --tw-ring-color: #3b82f6;
     }
-
-    /* Adjustments for brighter light mode if needed */
-    .dark .dark-square { /* Example: If dark mode needs different dark square for checkerboard */
-        /* background-color: #374151; /* Slightly lighter gray for dark mode board if needed */
+    .card {
+      background-color: rgba(31, 41, 55, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     }
-    .dark .light-square { /* Example: If dark mode needs different light square for checkerboard */
-        /* background-color: #9ca3af; */
+    .section-container {
+      background-color: rgba(31, 41, 55, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .dark .board {
-        border-color: #9ca3af; /* Lighter border for dark mode board */
+    .skill-badge {
+      background-color: rgba(55, 65, 81, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-
+    .project-card {
+      background-color: rgba(55, 65, 81, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    input, textarea {
+      background-color: rgba(55, 65, 81, 0.7) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      color: #e2e8f0 !important;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #9ca3af !important;
+    }
   </style>
 </head>
-<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-all duration-500 animate-entry">
+<body class="text-gray-200 transition-all duration-500 animate-entry">
 
-  <div class="fixed top-4 right-4 z-50">
-    <button id="toggleDark" class="bg-gray-800 dark:bg-gray-100 text-white dark:text-black px-4 py-2 rounded-full shadow hover:scale-105 transition flex items-center gap-2">
-      <span id="toggleIcon">🌙</span>
-      <span id="toggleLabel">Dark Mode</span>
-    </button>
-  </div>
-
-  <section class="bg-white dark:bg-gray-800 py-20 px-4 text-center fade-slide">
-    <img src="profile.png" alt="Dagim Profile" class="mx-auto w-32 h-32 rounded-full object-cover shadow-lg mb-6">
-    <h1 class="text-4xl md:text-6xl font-bold">Hi, I'm Dagim 👋</h1>
-    <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">A Passionate Full Stack Developer</p>
-    <a href="#contact" class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700">Hire Me</a>
+  <section class="py-20 px-4 text-center fade-slide">
+    <div class="max-w-4xl mx-auto card py-10 px-6">
+      <img src="profile.png" alt="Dagim Profile" class="mx-auto w-32 h-32 rounded-full object-cover shadow-lg mb-6 border-4 border-gray-700">
+      <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-amber-400 to-blue-500 bg-clip-text text-transparent">Hi, I'm Dagim 👋</h1>
+      <p class="mt-4 text-xl text-gray-300">A Passionate Full Stack Developer</p>
+      <a href="#contact" class="inline-block mt-6 px-6 py-3 bg-gradient-to-r from-amber-400 to-blue-500 text-gray-900 font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg">Hire Me</a>
+    </div>
   </section>
 
   <section class="py-16 px-6 max-w-5xl mx-auto fade-slide">
-    <h2 class="text-3xl font-bold mb-4">About Me</h2>
-    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">I'm a full stack developer with experience in building high-quality web applications using modern tech stacks including JavaScript, Python, Node.js, React, and more. I enjoy solving complex problems and bringing creative ideas to life.</p>
+    <div class="section-container p-8">
+      <h2 class="text-3xl font-bold mb-4 text-gray-200">About Me</h2>
+      <p class="text-gray-300 leading-relaxed">I'm a full stack developer with experience in building high-quality web applications using modern tech stacks including JavaScript, Python, Node.js, React, and more. I enjoy solving complex problems and bringing creative ideas to life.</p>
+    </div>
   </section>
 
-  <section class="bg-gray-200 dark:bg-gray-800 py-16 px-6 fade-slide">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6">Skills</h2>
+  <section class="py-16 px-6 fade-slide">
+    <div class="max-w-5xl mx-auto section-container p-8">
+      <h2 class="text-3xl font-bold mb-6 text-gray-200">Skills</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">HTML & CSS</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">JavaScript</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">React</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Node.js</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Express.js</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">MongoDB</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Python</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Django</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Postgres</span>
-        <span class="bg-white dark:bg-gray-700 p-4 rounded shadow">Next.js</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">HTML & CSS</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">JavaScript</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">React</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">Node.js</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">Express.js</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">MongoDB</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">Python</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">Django</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">Postgres</span>
+        <span class="skill-badge p-4 rounded hover:transform hover:scale-105 transition">Next.js</span>
       </div>
     </div>
   </section>
 
   <section class="py-16 px-6 max-w-5xl mx-auto fade-slide">
-    <h2 class="text-3xl font-bold mb-6">Projects</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-white dark:bg-gray-800 p-6 rounded shadow">
-        <h3 class="text-xl font-semibold">Pathway Travel</h3>
-        <p class="text-gray-600 dark:text-gray-300 mt-2">A website with trip packages to help people choose destinations. <a class="text-blue-500" href="../Day 5/5.html">Visit Link</a></p>
-      </div>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded shadow">
-        <h3 class="text-xl font-semibold">Base Club Lounge</h3>
-        <p class="text-gray-600 dark:text-gray-300 mt-2">Website about lounge services, location, and offers. Peoples enjoiment area <a class="text-blue-500" href="../Day 3/3.html">Visit Link</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white dark:bg-gray-900 py-16 px-6 fade-slide text-center">
-    <h2 class="text-3xl font-bold mb-4">Checkers Game</h2>
-    <div id="gameSection" class="max-w-xl mx-auto">
-        <div class="mb-4">
-          <button onclick="startSinglePlayerGame()" class="bg-purple-600 text-white px-4 py-2 rounded m-2 hover:bg-purple-700 transition">Single Player (vs AI)</button>
-          <button onclick="startMultiPlayerGame()" class="bg-green-600 text-white px-4 py-2 rounded m-2 hover:bg-green-700 transition">Multiplayer (2 Players)</button>
-          <button onclick="resetGame()" class="bg-red-600 text-white px-4 py-2 rounded m-2 hover:bg-red-700 transition">Reset Game</button>
+    <div class="section-container p-8">
+      <h2 class="text-3xl font-bold mb-6 text-gray-200">Projects</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="project-card p-6 rounded hover:transform hover:scale-105 transition">
+          <h3 class="text-xl font-semibold text-amber-400">Pathway Travel</h3>
+          <p class="text-gray-400 mt-2">A website with trip packages to help people choose destinations. <a class="text-blue-400 hover:text-blue-300" href="../Day 5/5.html">Visit Link</a></p>
         </div>
-      <div id="gameStatus" class="text-xl mb-4">Select a game mode to start</div>
-      <div id="board" class="board"></div>
+        <div class="project-card p-6 rounded hover:transform hover:scale-105 transition">
+          <h3 class="text-xl font-semibold text-amber-400">Base Club Lounge</h3>
+          <p class="text-gray-400 mt-2">Website about lounge services, location, and offers. Peoples enjoiment area <a class="text-blue-400 hover:text-blue-300" href="../Day 3/3.html">Visit Link</a></p>
+        </div>
+        <div class="project-card p-6 rounded hover:transform hover:scale-105 transition">
+          <h3 class="text-xl font-semibold text-amber-400">Telegram Bot</h3>
+          <p class="text-gray-400 mt-2">Telegram bot for spiritual education that helps people learn in more simple and interesting way. <a class="text-blue-400 hover:text-blue-300" href="https://t.me/Mekane_Heywet_Abenet_bot">Visit Link</a></p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="bg-gray-200 dark:bg-gray-800 py-16 px-6 fade-slide">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6">Work Experience</h2>
-      <div>
-        <h3 class="text-xl font-semibold">Full Stack Developer @ Droga Consulting</h3>
-        <p class="text-gray-600 dark:text-gray-300">Jan 2023 – Present</p>
-        <p class="mt-2 text-gray-700 dark:text-gray-200">Details of your role, achievements, and technologies used.</p>
+  <section class="py-16 px-6 fade-slide text-center">
+    <div class="max-w-5xl mx-auto section-container p-8">
+      <h2 class="text-3xl font-bold mb-4 text-gray-200">Checkers Game</h2>
+      <div id="gameSection" class="max-w-xl mx-auto">
+          <div class="mb-4">
+            <button onclick="startSinglePlayerGame()" class="bg-blue-600 text-white px-4 py-2 rounded m-2 hover:bg-blue-700 transition transform hover:scale-105">Single Player (vs AI)</button>
+            <button onclick="startMultiPlayerGame()" class="bg-amber-500 text-gray-900 px-4 py-2 rounded m-2 hover:bg-amber-600 transition transform hover:scale-105">Multiplayer (2 Players)</button>
+            <button onclick="resetGame()" class="bg-red-600 text-white px-4 py-2 rounded m-2 hover:bg-red-700 transition transform hover:scale-105">Reset Game</button>
+          </div>
+        <div id="gameStatus" class="text-xl mb-4 text-gray-300">Select a game mode to start</div>
+        <div id="board" class="board"></div>
       </div>
     </div>
   </section>
 
   <section class="py-16 px-6 max-w-5xl mx-auto fade-slide">
-    <h2 class="text-3xl font-bold mb-6">Education</h2>
-    <div>
-      <h3 class="text-xl font-semibold">CPU Collage</h3>
-      <p class="text-gray-600 dark:text-gray-300">Diploma, Hardware Networking and Service, 2019</p>
-      <p class="text-gray-600 dark:text-gray-300">Degree, Computer Science, 2023</p>
+    <div class="section-container p-8">
+      <h2 class="text-3xl font-bold mb-6 text-gray-200">Work Experience</h2>
+      <div>
+        <h3 class="text-xl font-semibold text-amber-400">Full Stack Developer @ Droga Consulting</h3>
+        <p class="text-gray-400">Jan 2023 – Present</p>
+        <p class="mt-2 text-gray-300">Details of your role, achievements, and technologies used.</p>
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="bg-white dark:bg-gray-800 py-16 px-6 max-w-3xl mx-auto fade-slide">
-    <h2 class="text-3xl font-bold mb-6 text-center">Contact Me</h2>
-    <form class="grid gap-4">
-      <input type="text" placeholder="Your Name" class="p-3 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600" />
-      <input type="email" placeholder="Your Email" class="p-3 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600" />
-      <textarea rows="5" placeholder="Your Message" class="p-3 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"></textarea>
-      <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded hover:bg-blue-700">Send</button>
-    </form>
+  <section class="py-16 px-6 max-w-5xl mx-auto fade-slide">
+    <div class="section-container p-8">
+      <h2 class="text-3xl font-bold mb-6 text-gray-200">Education</h2>
+      <div>
+        <h3 class="text-xl font-semibold text-amber-400">CPU Collage</h3>
+        <p class="text-gray-400">Diploma, Hardware Networking and Service, 2019</p>
+        <p class="text-gray-400">Degree, Computer Science, 2023</p>
+      </div>
+    </div>
   </section>
 
-  <footer class="text-center py-6 bg-gray-800 text-white mt-12 fade-slide dark:bg-gray-900">
+  <section id="contact" class="py-16 px-6 max-w-3xl mx-auto fade-slide">
+    <div class="section-container p-8">
+      <h2 class="text-3xl font-bold mb-6 text-center text-gray-200">Contact Me</h2>
+      <form class="grid gap-4">
+        <input type="text" placeholder="Your Name" class="p-3 border rounded" />
+        <input type="email" placeholder="Your Email" class="p-3 border rounded" />
+        <textarea rows="5" placeholder="Your Message" class="p-3 border rounded"></textarea>
+        <button type="submit" class="bg-gradient-to-r from-amber-400 to-blue-500 text-gray-900 font-bold py-3 px-6 rounded hover:opacity-90 transition transform hover:scale-105">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="text-center py-6 bg-gray-900 text-gray-300 mt-12 fade-slide bg-opacity-80">
     <p>&copy; 2025 Dagim. All rights reserved.</p>
   </footer>
 
   <script>
-    const toggle = document.getElementById('toggleDark');
-    const html = document.documentElement;
-    const icon = document.getElementById('toggleIcon');
-    const label = document.getElementById('toggleLabel');
-
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      html.classList.add('dark');
-      icon.innerText = '☀️';
-      label.innerText = 'Light Mode';
-    } else {
-      html.classList.remove('dark'); // Explicitly remove if not dark
-      icon.innerText = '🌙';
-      label.innerText = 'Dark Mode';
-    }
-
-    toggle.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      icon.innerText = isDark ? '☀️' : '🌙';
-      label.innerText = isDark ? 'Light Mode' : 'Dark Mode';
-      localStorage.theme = isDark ? 'dark' : 'light';
-    });
-
     window.addEventListener('load', () => {
       document.querySelectorAll('.fade-slide').forEach((el, i) => {
         setTimeout(() => el.classList.add('show'), i * 150);
@@ -231,6 +245,7 @@
     });
   </script>
 
+  <!-- Keep all the existing game JavaScript code exactly as it was -->
   <script>
     let boardState = [];
     let selectedPiece = null;
@@ -660,12 +675,12 @@
     function highlightSelected(row, col) {
       clearHighlights(); 
       const sq = getSquare(row,col);
-      if (sq) sq.classList.add('ring-4', 'ring-yellow-400');
+      if (sq) sq.classList.add('ring-4', 'ring-amber-400');
     }
 
     function clearHighlights() {
       document.querySelectorAll('.square.ring-4').forEach(sq => // Be more specific
-        sq.classList.remove('ring-4', 'ring-yellow-400', 'ring-green-500')
+        sq.classList.remove('ring-4', 'ring-amber-400', 'ring-blue-500')
       );
     }
 
@@ -675,7 +690,7 @@
         if (!piece) return;
 
         // Clear previous possible move highlights before showing new ones
-        document.querySelectorAll('.square.ring-green-500').forEach(sq => sq.classList.remove('ring-4', 'ring-green-500'));
+        document.querySelectorAll('.square.ring-blue-500').forEach(sq => sq.classList.remove('ring-4', 'ring-blue-500'));
 
 
         const availableJumpsForSelectedPiece = getValidJumps(row, col);
@@ -685,14 +700,14 @@
         if (isInMultiJump) { // If in a multi-jump sequence for the selected piece
             availableJumpsForSelectedPiece.forEach(([r, c]) => {
                 const sq = getSquare(r, c);
-                if (sq) sq.classList.add('ring-4', 'ring-green-500');
+                if (sq) sq.classList.add('ring-4', 'ring-blue-500');
             });
         } else if (playerHasAnyJump) { // If any jump is available on the board for the current player
             // Only show jumps. If selected piece has jumps, show them. Otherwise, show nothing for this piece.
             if (availableJumpsForSelectedPiece.length > 0) {
                 availableJumpsForSelectedPiece.forEach(([r, c]) => {
                     const sq = getSquare(r, c);
-                    if (sq) sq.classList.add('ring-4', 'ring-green-500');
+                    if (sq) sq.classList.add('ring-4', 'ring-blue-500');
                 });
             }
         } else { // No jumps available for any piece, show normal moves for this piece
@@ -704,7 +719,7 @@
                 const r = row + dr, c = col + dc;
                 if (isInBounds(r, c) && !boardState[r][c]) {
                     const sq = getSquare(r, c);
-                    if (sq) sq.classList.add('ring-4', 'ring-green-500');
+                    if (sq) sq.classList.add('ring-4', 'ring-blue-500');
                 }
             });
         }
@@ -748,6 +763,7 @@
     function capitalize(word) {
       if (!word) return '';
       return word[0].toUpperCase() + word.slice(1);
+   
     }
 
     function checkGameOver() {
@@ -795,10 +811,9 @@
       if (gameMode === 'single') {
         winnerName = winner === 'red' ? 'You win!' : 'AI wins!';
       } else { 
-        winnerName = `${capitalize(winner)} wins!`;
-      }
-      updateStatus(`Game over! ${winnerName}`);
-    }
+        winnerName = `${winnerName}`;
+    }}
   </script>
 </body>
 </html>
+
