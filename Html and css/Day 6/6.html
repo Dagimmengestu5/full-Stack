@@ -39,7 +39,7 @@
       width: 100%;
       max-width: 400px;
       margin: auto;
-      border: 2px solid #333;
+      border: 2px solid #333; /* Will be dark in light mode, light in dark mode if you adjust border color for dark theme */
     }
     .square {
       width: 100%;
@@ -49,10 +49,13 @@
       justify-content: center;
     }
     .dark-square {
-      background-color: #4b5563; /* Tailwind gray-600 */
+      background-color: #4b5563; /* Tailwind gray-600 for dark squares */
     }
     .light-square {
-      background-color: #f3f4f6; /* Tailwind gray-100 */
+      /* For light mode, checkerboard's light squares can be a very light gray or white.
+         If body is white, and light-square is white, dark squares provide contrast.
+         If you want light squares to be distinct from a white body, use a light gray. */
+      background-color: #f3f4f6; /* Tailwind gray-100 for light squares - keeps checkerboard pattern distinct */
     }
     .piece {
       width: 80%;
@@ -66,26 +69,38 @@
     .black {
       background-color: #1f2937; /* Tailwind gray-800 */
     }
-    .king::after { /* Simplified king indicator */
+    .king::after {
       content: '★';
-      font-size: 1.2em; /* Adjusted for visibility */
+      font-size: 1.2em;
       color: yellow;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100%;
       width: 100%;
-      text-shadow: 0 0 2px black; /* Make star more visible */
+      text-shadow: 0 0 2px black;
     }
-    .ring-yellow-400 { /* Ensure Tailwind JIT picks this up if not used elsewhere */
+    .ring-yellow-400 {
         --tw-ring-color: #facc15;
     }
-    .ring-green-500 { /* Ensure Tailwind JIT picks this up if not used elsewhere */
+    .ring-green-500 {
         --tw-ring-color: #22c55e;
     }
+
+    /* Adjustments for brighter light mode if needed */
+    .dark .dark-square { /* Example: If dark mode needs different dark square for checkerboard */
+        /* background-color: #374151; /* Slightly lighter gray for dark mode board if needed */
+    }
+    .dark .light-square { /* Example: If dark mode needs different light square for checkerboard */
+        /* background-color: #9ca3af; */
+    }
+    .dark .board {
+        border-color: #9ca3af; /* Lighter border for dark mode board */
+    }
+
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-all duration-500 animate-entry">
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-all duration-500 animate-entry">
 
   <div class="fixed top-4 right-4 z-50">
     <button id="toggleDark" class="bg-gray-800 dark:bg-gray-100 text-white dark:text-black px-4 py-2 rounded-full shadow hover:scale-105 transition flex items-center gap-2">
@@ -138,7 +153,7 @@
     </div>
   </section>
 
-  <section class="bg-gray-100 dark:bg-gray-900 py-16 px-6 fade-slide text-center">
+  <section class="bg-white dark:bg-gray-900 py-16 px-6 fade-slide text-center">
     <h2 class="text-3xl font-bold mb-4">Checkers Game</h2>
     <div id="gameSection" class="max-w-xl mx-auto">
         <div class="mb-4">
@@ -174,14 +189,14 @@
   <section id="contact" class="bg-white dark:bg-gray-800 py-16 px-6 max-w-3xl mx-auto fade-slide">
     <h2 class="text-3xl font-bold mb-6 text-center">Contact Me</h2>
     <form class="grid gap-4">
-      <input type="text" placeholder="Your Name" class="p-3 border rounded dark:bg-gray-700 dark:text-white" />
-      <input type="email" placeholder="Your Email" class="p-3 border rounded dark:bg-gray-700 dark:text-white" />
-      <textarea rows="5" placeholder="Your Message" class="p-3 border rounded dark:bg-gray-700 dark:text-white"></textarea>
+      <input type="text" placeholder="Your Name" class="p-3 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+      <input type="email" placeholder="Your Email" class="p-3 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+      <textarea rows="5" placeholder="Your Message" class="p-3 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"></textarea>
       <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded hover:bg-blue-700">Send</button>
     </form>
   </section>
 
-  <footer class="text-center py-6 bg-gray-800 text-white mt-12 fade-slide">
+  <footer class="text-center py-6 bg-gray-800 text-white mt-12 fade-slide dark:bg-gray-900">
     <p>&copy; 2025 Dagim. All rights reserved.</p>
   </footer>
 
@@ -191,10 +206,14 @@
     const icon = document.getElementById('toggleIcon');
     const label = document.getElementById('toggleLabel');
 
-    if (localStorage.theme === 'dark') {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       html.classList.add('dark');
       icon.innerText = '☀️';
       label.innerText = 'Light Mode';
+    } else {
+      html.classList.remove('dark'); // Explicitly remove if not dark
+      icon.innerText = '🌙';
+      label.innerText = 'Dark Mode';
     }
 
     toggle.addEventListener('click', () => {
@@ -226,7 +245,7 @@
       initBoard();
       initPieces();
       gameActive = true;
-      currentPlayer = 'red'; // Human is always red in single player
+      currentPlayer = 'red'; 
       updateStatus("Your turn (Red)");
     }
 
@@ -236,7 +255,7 @@
       initBoard();
       initPieces();
       gameActive = true;
-      currentPlayer = 'red'; // Red starts in multiplayer
+      currentPlayer = 'red'; 
       updateStatus("Red's turn");
     }
 
@@ -248,7 +267,7 @@
       gameActive = false;
       gameMode = 'none';
       const board = document.getElementById('board');
-      board.innerHTML = ''; // Clear previous board elements
+      board.innerHTML = ''; 
       updateStatus('Select a game mode to start');
       clearHighlights();
     }
@@ -295,7 +314,6 @@
       const moves = [];
       let hasMandatoryJumps = false;
       
-      // Check for jumps first
       for (let row = 0; row < 8; row++) {
         for (let col = 0; col < 8; col++) {
           const piece = boardState[row][col];
@@ -319,11 +337,9 @@
       }
       
       if (hasMandatoryJumps) {
-        // If there are jumps, only return jump moves
         return moves.filter(move => move.isJump);
       }
 
-      // If no jumps, get normal moves
       for (let row = 0; row < 8; row++) {
         for (let col = 0; col < 8; col++) {
           const piece = boardState[row][col];
@@ -351,21 +367,35 @@
     }
 
     function evaluateBestNormalMove(moves) {
-      if (moves.length === 0) return null;
-      return moves.reduce((best, move) => {
-        const score = evaluateMoveScore(move);
-        return score > best.score ? { move, score } : best;
-      }, { move: moves[0], score: -Infinity }).move;
+      if (!moves || moves.length === 0) return null; // Added a check for empty or null moves array
+      // Ensure moves[0] exists before trying to access it.
+      const initialBestMove = moves.length > 0 ? moves[0] : null;
+      if (!initialBestMove) return null;
+
+
+      return moves.reduce((best, currentMoveObj) => {
+        // The 'moves' array from getAllPossibleMovesForPlayer contains objects like {from, to, isJump, captures}
+        // 'evaluateMoveScore' expects such an object.
+        const currentScore = evaluateMoveScore(currentMoveObj); // Pass the move object directly
+        // The 'best' accumulator should also store the move object, not just its score
+        if (currentScore > best.score) {
+            return { move: currentMoveObj, score: currentScore };
+        }
+        return best;
+    }, { move: initialBestMove, score: evaluateMoveScore(initialBestMove) }).move; // evaluate score for initial best
     }
 
-    function evaluateMoveScore(move) {
+    function evaluateMoveScore(move) { // move is an object {from, to, ...}
       let score = 0;
+      // Ensure boardState[move.from.row] exists before trying to access boardState[move.from.row][move.from.col]
+      if (!boardState[move.from.row]) return -Infinity; // Or some other default low score
       const piece = boardState[move.from.row][move.from.col];
-      
+      if (!piece) return -Infinity; // Should not happen if move is valid
+
       if (!piece.isKing) {
         if ((piece.color === 'red' && move.to.row === 0) || 
             (piece.color === 'black' && move.to.row === 7)) {
-          score += 50; // King promotion
+          score += 50; 
         }
       }
       
@@ -378,19 +408,19 @@
     }
 
     function executeAIMove(move) {
-      if (!move) return; // Should not happen if called correctly
+      if (!move || !move.from) return; 
       selectedPiece = { row: move.from.row, col: move.from.col };
       highlightSelected(move.from.row, move.from.col);
       
       setTimeout(() => {
-        if (move.isJump) {
+        if (move.isJump && move.captures) { // check captures exists
           move.captures.forEach(({ row, col }) => removePiece(row, col));
         }
         movePiece(move.from.row, move.from.col, move.to.row, move.to.col);
         
         if (move.isJump && canJump(move.to.row, move.to.col)) {
           selectedPiece = { row: move.to.row, col: move.to.col };
-          setTimeout(() => makeAIMove(), 1000); // Continue multi-jump for AI
+          setTimeout(() => makeAIMove(), 1000); 
         } else {
           selectedPiece = null;
           clearHighlights();
@@ -402,7 +432,7 @@
 
     function initBoard() {
       const board = document.getElementById('board');
-      board.innerHTML = ''; // Clear board before initializing
+      board.innerHTML = ''; 
       for (let row = 0; row < 8; row++) {
         boardState[row] = [];
         for (let col = 0; col < 8; col++) {
@@ -443,9 +473,9 @@
       piece.classList.add('piece', color);
       piece.dataset.color = color;
       piece.dataset.king = 'false';
-      // piece.textContent = ''; // King indicator handled by CSS :after
-
-      getSquare(row, col).appendChild(piece);
+      
+      const sq = getSquare(row, col);
+      if(sq) sq.appendChild(piece); // Check if square exists
       boardState[row][col] = { color, isKing: false };
     }
 
@@ -455,12 +485,14 @@
           if (!gameActive) return;
           
           const square = piece.parentElement;
+          if (!square) return; // Check if parent exists
           const row = parseInt(square.dataset.row);
           const col = parseInt(square.dataset.col);
+          // Ensure boardState[row] exists before accessing boardState[row][col]
+          if (!boardState[row]) return;
           const pieceData = boardState[row][col];
 
           if (pieceData && pieceData.color === currentPlayer) {
-             // In single player, AI's turn is not clickable
             if (gameMode === 'single' && currentPlayer === 'black') return;
             onPieceClick(row, col);
           }
@@ -470,8 +502,8 @@
     }
 
     function onPieceClick(row, col) {
+      if (!boardState[row]) return;
       const piece = boardState[row][col];
-      // This check is now more robust in refreshPieceListeners, but good to keep
       if (!piece || piece.color !== currentPlayer) return;
 
       if (isInMultiJump && (!selectedPiece || selectedPiece.row !== row || selectedPiece.col !== col)) {
@@ -486,28 +518,38 @@
     function onSquareClick(row, col) {
       if (!selectedPiece || !gameActive) return;
       
-      // If single player and AI's turn, human cannot move.
       if (gameMode === 'single' && currentPlayer === 'black') return;
 
       const { row: fromRow, col: fromCol } = selectedPiece;
+      if(!boardState[fromRow] || !boardState[fromRow][fromCol]) return; // piece to move doesn't exist
 
-      // Mandatory jump rule: If jumps are available for any piece of the current player, a jump must be made.
-      // And if the selected piece has a jump, it must make that jump.
       const allPlayerMoves = getAllPossibleMovesForPlayer(currentPlayer);
       const hasAnyJump = allPlayerMoves.some(move => move.isJump);
-      const selectedPieceJumps = getValidJumps(fromRow, fromCol);
+      const selectedPieceJumps = getValidJumps(fromRow, fromCol); // Jumps for the currently selected piece
 
       const moveType = getMoveType(fromRow, fromCol, row, col);
 
-      if (hasAnyJump && moveType !== 'jump') {
-          updateStatus(`${capitalize(currentPlayer)}, you must make a jump!`);
-          // Optionally, briefly highlight pieces that can jump
-          return; // Do not allow non-jump move if a jump is available
-      }
-      if (!hasAnyJump && selectedPieceJumps.length > 0 && moveType !== 'jump') {
-           //This specific piece can jump, but user tries a normal move
-           updateStatus(`${capitalize(currentPlayer)}, you must make a jump with this piece!`);
-           return;
+      // Mandatory jump rule logic
+      if (hasAnyJump) { // If any jump is available for the current player
+          if (moveType !== 'jump') { // And the attempted move is not a jump
+              // Check if the selected piece itself can jump
+              if (selectedPieceJumps.length > 0) {
+                  updateStatus(`${capitalize(currentPlayer)}, you must make a jump with this piece!`);
+              } else {
+                  updateStatus(`${capitalize(currentPlayer)}, a jump is available elsewhere. You must take a jump!`);
+              }
+              // Highlight pieces that can jump
+              allPlayerMoves.forEach(possibleMove => {
+                  if (possibleMove.isJump) {
+                      const pieceSquare = getSquare(possibleMove.from.row, possibleMove.from.col);
+                      if (pieceSquare) pieceSquare.classList.add('ring-2', 'ring-offset-2', 'ring-red-500'); // Example highlight
+                  }
+              });
+              setTimeout(() => { // Clear highlights after a delay
+                  document.querySelectorAll('.ring-red-500').forEach(sq => sq.classList.remove('ring-2', 'ring-offset-2', 'ring-red-500'));
+              }, 2000);
+              return;
+          }
       }
 
 
@@ -521,10 +563,10 @@
 
       movePiece(fromRow, fromCol, row, col);
 
-      const canContinueJump = canJump(row, col);
+      const canContinueJump = canJump(row, col); // from the new position
       if (moveType === 'jump' && canContinueJump) {
         isInMultiJump = true;
-        selectedPiece = { row, col }; // Update selected piece to the new position
+        selectedPiece = { row, col }; 
         highlightSelected(row, col);
         showPossibleMoves(row, col); // Show only jumps from new position
       } else {
@@ -537,26 +579,26 @@
     }
 
     function getMoveType(fromRow, fromCol, toRow, toCol) {
+      if(!boardState[fromRow] || !boardState[fromRow][fromCol]) return 'invalid';
       const piece = boardState[fromRow][fromCol];
       if (!piece || !isInBounds(toRow, toCol) || boardState[toRow][toCol]) return 'invalid';
 
       const dr = toRow - fromRow;
       const dc = toCol - fromCol;
 
-      // Normal move
       if (Math.abs(dr) === 1 && Math.abs(dc) === 1) {
         if (piece.isKing) return 'normal';
-        if (piece.color === 'red' && dr === -1) return 'normal'; // Red moves up
-        if (piece.color === 'black' && dr === 1) return 'normal'; // Black moves down
+        if (piece.color === 'red' && dr === -1) return 'normal'; 
+        if (piece.color === 'black' && dr === 1) return 'normal'; 
         return 'invalid';
       }
 
-      // Jump move
       if (Math.abs(dr) === 2 && Math.abs(dc) === 2) {
         const midRow = fromRow + dr / 2;
         const midCol = fromCol + dc / 2;
-        const midPiece = boardState[midRow]?.[midCol];
-        if (!midPiece || midPiece.color === piece.color) return 'invalid'; // Must jump over opponent
+        if(!isInBounds(midRow, midCol) || !boardState[midRow] || !boardState[midRow][midCol]) return 'invalid';
+        const midPiece = boardState[midRow][midCol];
+        if (!midPiece || midPiece.color === piece.color) return 'invalid'; 
 
         if (piece.isKing) return 'jump';
         if (piece.color === 'red' && dr === -2) return 'jump';
@@ -568,15 +610,19 @@
     }
 
     function movePiece(fromRow, fromCol, toRow, toCol) {
+      if(!boardState[fromRow] || !boardState[fromRow][fromCol]) return;
       const pieceData = boardState[fromRow][fromCol];
-      const pieceElem = getSquare(fromRow, fromCol).querySelector('.piece');
+      const fromSq = getSquare(fromRow, fromCol);
+      const toSq = getSquare(toRow, toCol);
+
+      if(!fromSq || !toSq) return;
+      const pieceElem = fromSq.querySelector('.piece');
       
-      getSquare(fromRow, fromCol).innerHTML = ''; // Clear original square
+      if(pieceElem) toSq.appendChild(pieceElem); 
+      fromSq.innerHTML = ''; 
 
       boardState[toRow][toCol] = pieceData;
       boardState[fromRow][fromCol] = null;
-
-      getSquare(toRow, toCol).appendChild(pieceElem); // Move element
 
       if (!pieceData.isKing) {
         if ((pieceData.color === 'red' && toRow === 0) ||
@@ -584,23 +630,22 @@
           kingPiece(toRow, toCol);
         }
       }
-      // No need to call refreshPieceListeners here, as piece element itself is moved.
-      // Listeners are on the piece element.
     }
 
     function kingPiece(row, col) {
+      if(!boardState[row] || !boardState[row][col]) return;
       const pieceData = boardState[row][col];
       if (!pieceData || pieceData.isKing) return;
 
       pieceData.isKing = true;
-      const pieceElem = getSquare(row, col).querySelector('.piece');
-      pieceElem.classList.add('king'); // Add king class for CSS styling (star)
-      // pieceElem.textContent = 'K'; // Or use text, but CSS ::after is better
+      const pieceElem = getSquare(row, col)?.querySelector('.piece'); // Optional chaining
+      if(pieceElem) pieceElem.classList.add('king'); 
     }
 
     function removePiece(row, col) {
-      getSquare(row, col).innerHTML = '';
-      boardState[row][col] = null;
+      const sq = getSquare(row, col);
+      if(sq) sq.innerHTML = '';
+      if(boardState[row]) boardState[row][col] = null;
     }
 
     function getSquare(row, col) {
@@ -608,39 +653,48 @@
     }
 
     function updateStatus(msg) {
-      document.getElementById('gameStatus').textContent = msg;
+      const statusEl = document.getElementById('gameStatus');
+      if (statusEl) statusEl.textContent = msg;
     }
 
     function highlightSelected(row, col) {
-      clearHighlights(); // Clear previous selections/possibilities
+      clearHighlights(); 
       const sq = getSquare(row,col);
       if (sq) sq.classList.add('ring-4', 'ring-yellow-400');
     }
 
     function clearHighlights() {
-      document.querySelectorAll('.square').forEach(sq =>
+      document.querySelectorAll('.square.ring-4').forEach(sq => // Be more specific
         sq.classList.remove('ring-4', 'ring-yellow-400', 'ring-green-500')
       );
     }
 
     function showPossibleMoves(row, col) {
-        // clearHighlights(); // Already called by highlightSelected typically
-        // highlightSelected(row, col); // Keep selected piece highlighted
-
+        if (!boardState[row] || !boardState[row][col]) return;
         const piece = boardState[row][col];
         if (!piece) return;
 
-        const availableJumps = getValidJumps(row, col);
+        // Clear previous possible move highlights before showing new ones
+        document.querySelectorAll('.square.ring-green-500').forEach(sq => sq.classList.remove('ring-4', 'ring-green-500'));
+
+
+        const availableJumpsForSelectedPiece = getValidJumps(row, col);
         const allPlayerMoves = getAllPossibleMovesForPlayer(currentPlayer);
         const playerHasAnyJump = allPlayerMoves.some(move => move.isJump);
 
-        if (playerHasAnyJump) { // If any jump is possible for the player, only show jumps
-            if (availableJumps.length > 0) { // If this specific piece has jumps
-                availableJumps.forEach(([r, c]) => {
-                    getSquare(r, c).classList.add('ring-4', 'ring-green-500');
+        if (isInMultiJump) { // If in a multi-jump sequence for the selected piece
+            availableJumpsForSelectedPiece.forEach(([r, c]) => {
+                const sq = getSquare(r, c);
+                if (sq) sq.classList.add('ring-4', 'ring-green-500');
+            });
+        } else if (playerHasAnyJump) { // If any jump is available on the board for the current player
+            // Only show jumps. If selected piece has jumps, show them. Otherwise, show nothing for this piece.
+            if (availableJumpsForSelectedPiece.length > 0) {
+                availableJumpsForSelectedPiece.forEach(([r, c]) => {
+                    const sq = getSquare(r, c);
+                    if (sq) sq.classList.add('ring-4', 'ring-green-500');
                 });
             }
-            // If this piece has no jumps, but another piece does, show no moves for this one.
         } else { // No jumps available for any piece, show normal moves for this piece
             const directions = piece.isKing
                 ? [[-1, -1], [-1, 1], [1, -1], [1, 1]]
@@ -649,41 +703,34 @@
             directions.forEach(([dr, dc]) => {
                 const r = row + dr, c = col + dc;
                 if (isInBounds(r, c) && !boardState[r][c]) {
-                    getSquare(r, c).classList.add('ring-4', 'ring-green-500');
+                    const sq = getSquare(r, c);
+                    if (sq) sq.classList.add('ring-4', 'ring-green-500');
                 }
-            });
-            // Also show jumps if this piece is not in multi-jump but can jump (though covered by playerHasAnyJump logic)
-            availableJumps.forEach(([r, c]) => {
-                 getSquare(r, c).classList.add('ring-4', 'ring-green-500');
-            });
-        }
-
-        if (isInMultiJump && availableJumps.length > 0) { // During multi-jump, only show further jumps
-            document.querySelectorAll('.ring-green-500').forEach(sq => sq.classList.remove('ring-4', 'ring-green-500')); // Clear other green rings
-            availableJumps.forEach(([r, c]) => {
-                getSquare(r, c).classList.add('ring-4', 'ring-green-500');
             });
         }
     }
 
 
     function getValidJumps(row, col) {
+      if (!boardState[row] || !boardState[row][col]) return [];
       const piece = boardState[row][col];
       if (!piece) return [];
 
       const jumps = [];
       const directions = piece.isKing
-        ? [[-2, -2], [-2, 2], [2, -2], [2, 2]] // King jump directions
-        : (piece.color === 'red' ? [[-2, -2], [-2, 2]] : [[2, -2], [2, 2]]); // Normal piece jump directions
+        ? [[-2, -2], [-2, 2], [2, -2], [2, 2]] 
+        : (piece.color === 'red' ? [[-2, -2], [-2, 2]] : [[2, -2], [2, 2]]); 
 
       directions.forEach(([dr, dc]) => {
-        const r = row + dr; // Target row
-        const c = col + dc; // Target col
+        const r = row + dr; 
+        const c = col + dc; 
         const midRow = row + dr / 2;
         const midCol = col + dc / 2;
-        const midPiece = isInBounds(midRow, midCol) ? boardState[midRow][midCol] : null;
+        
+        if (!isInBounds(midRow, midCol) || !boardState[midRow]) return; // Check midRow exists in boardState
+        const midPiece = boardState[midRow][midCol];
 
-        if (isInBounds(r, c) && !boardState[r][c] && midPiece && midPiece.color !== piece.color) {
+        if (isInBounds(r, c) && (!boardState[r] || !boardState[r][c]) && midPiece && midPiece.color !== piece.color) {
           jumps.push([r, c]);
         }
       });
@@ -705,39 +752,37 @@
 
     function checkGameOver() {
       const opponent = currentPlayer === 'red' ? 'black' : 'red';
-      const currentPlayerPieces = [];
-      const opponentPieces = [];
+      let currentPlayerHasPieces = false;
+      let opponentHasPieces = false;
 
       for (let r = 0; r < 8; r++) {
         for (let c = 0; c < 8; c++) {
-          const piece = boardState[r][c];
+          const piece = boardState[r]?.[c]; // Optional chaining for row
           if (piece) {
-            if (piece.color === currentPlayer) currentPlayerPieces.push({ r, c });
-            else opponentPieces.push({ r, c });
+            if (piece.color === currentPlayer) currentPlayerHasPieces = true;
+            else opponentHasPieces = true;
           }
         }
       }
 
-      if (opponentPieces.length === 0) {
-        announceWinner(currentPlayer); // Current player wins if opponent has no pieces
+      if (!opponentHasPieces) {
+        announceWinner(currentPlayer); 
         return true;
       }
-      if (currentPlayerPieces.length === 0) {
-        announceWinner(opponent); // Opponent wins if current player has no pieces
+      if (!currentPlayerHasPieces) {
+        announceWinner(opponent); 
         return true;
       }
       
-      // Check if opponent has any valid moves
       const opponentPossibleMoves = getAllPossibleMovesForPlayer(opponent);
       if (opponentPossibleMoves.length === 0) {
-          announceWinner(currentPlayer); // Current player wins if opponent cannot move
+          announceWinner(currentPlayer); 
           return true;
       }
 
-      // Check if current player has any valid moves (relevant for stalemate or blocked situations)
       const currentPlayerPossibleMoves = getAllPossibleMovesForPlayer(currentPlayer);
       if (currentPlayerPossibleMoves.length === 0) {
-          announceWinner(opponent); // Opponent wins if current player cannot move
+          announceWinner(opponent); 
           return true;
       }
 
@@ -749,7 +794,7 @@
       let winnerName;
       if (gameMode === 'single') {
         winnerName = winner === 'red' ? 'You win!' : 'AI wins!';
-      } else { // multi
+      } else { 
         winnerName = `${capitalize(winner)} wins!`;
       }
       updateStatus(`Game over! ${winnerName}`);

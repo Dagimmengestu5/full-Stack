@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
-*{box-sizing: 0;
+
+*{
+    box-sizing: border-box; /* Changed from 0 to border-box, which is standard */
     padding: 0;
     margin: 0;
 }
 
 body {
     font-size: small;
-    font-family:PolySans, sans-serif;
-
+    font-family: PolySans, sans-serif;
 }
 
 .navbar {
     position: sticky;
+    top: 0; /* Added for sticky to work effectively */
+    z-index: 1000; /* Added to ensure navbar stays on top */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,29 +22,35 @@ body {
     background-color: #27262b;
     color: white;
 }
+
 .logo {
     font-size: 24px;
     font-weight: bold;
     color: #cbd5e1;
 }
+
 .logo-fade {
     color: rgb(203, 213, 225, 0.2);
     font-weight: lighter;
 }
+
 .nav-links {
     list-style: none;
     display: flex;
     gap: 40px;
     font-size: 14px;
 }
+
 .nav-links a {
     text-decoration: none;
     color: #737373;
 }
+
 .auth-button {
     display: flex;
     gap: 20px;
 }
+
 .btn-outline {
     background-color: transparent;
     border: 1px solid #cbd5e1;
@@ -50,7 +59,8 @@ body {
     font-weight: bold;
     border-radius: 30px;
 }
-.btn-filed {
+
+.btn-filed { /* Assuming 'btn-filed' is intended, not 'btn-filled' */
     background-color: #525252;
     border: none;
     color: #cbd5e1;
@@ -62,7 +72,6 @@ body {
 .btn-filed:hover {
     background-color: #151515;
     cursor: pointer;
-
 }
 
 .btn-outline:hover {
@@ -76,11 +85,13 @@ body {
     position: relative;
     height: 100vh;
 }
+
 .background-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -88,19 +99,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    padding: 20px; /* Added padding for smaller screens */
 }
+
 .hero-content h1{
     text-align: center;
     color: #fff;
     max-width: 900px;
-    text-wrap: inherit;
+    text-wrap: balance; /* Changed from inherit for better balancing */
     font-size: 48px;
     flex-direction: column;
     display: flex;
     gap: 30px;
     align-items: center;
 }
+
 .hero-title {
     padding: 20px;
     text-align: center;
@@ -111,35 +124,41 @@ body {
     margin-bottom: 48px;
     /* letter-spacing:4; */
 }
+
 .hero-buttons {
     display: flex;
     justify-content: center;
     gap: 30px;
 }
+
 .content-section{
-    display: grid;
+    display: grid; /* Consider if this should be flex for more control */
     justify-content: center;
+    padding: 20px; /* Added padding */
 }
+
 .title-content {
     display: flex;
     justify-content: center;
 }
+
 .title-content h2{
-    margin: 30px;
+    margin: 30px 0; /* Adjusted margin */
     padding: 20px;
     text-align: center;
-   width: 600px;
+    width: 600px;
+    max-width: 90%; /* Ensure it doesn't overflow */
     /* border: 1px solid black; */
     align-items: center;
-    display: grid;
+    display: grid; /* If it's just text, grid might be overkill */
     justify-content: center;
-    
 }
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
-  
+ 
 .dropdown-content {
     display: none;
     position: absolute;
@@ -148,41 +167,62 @@ body {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-  
+ 
 .dropdown:hover .dropdown-content {
-    display:inline-block;
-    /* position: absolut16; */
+    display:block; /* Changed from inline-block for consistency */
+    /* position: absolute; */ /* Already absolute in .dropdown-content */
     left: 0;
 }
-  
+ 
 .image-content{
-max-width: 1200px;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-justify-content: center;
-align-items: center;
-width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the content */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Added gap between grid items */
+    justify-content: center;
+    align-items: start; /* Changed from center to start if content heights vary */
+    width: 100%;
 }
+
 .image-content1{
     border-radius: 20px;
     padding: 20px;
     /* border: 1px solid gray; */
+    display: flex; /* Added for better control of inner elements */
+    flex-direction: column; /* Stack image, h3, button */
+    align-items: center; /* Center content within the card */
+    text-align: center; /* Center text */
 }
+
 .image-content img {
-    width: 350px;
-    height: 300px;
+    width: 100%; /* Make image responsive */
+    max-width: 350px; /* Maintain max size if desired */
+    height: auto; /* Maintain aspect ratio */
     padding: 10px;
+    border-radius: 15px; /* Added for softer edges on images */
 }
+
 .image-content h3 {
     text-align: start;
-    /* padding: 10px; */
+    padding: 10px 0; /* Adjusted padding */
 }
+
 .image-content button {
     background-color: transparent;
+    border: 1px solid #525252; /* Added border for visibility */
+    color: #525252; /* Added color */
     border-radius: 20px;
     padding: 10px 30px;
-    margin-top: 30px;
+    margin-top: 15px; /* Adjusted margin */
+    cursor: pointer; /* Added cursor */
 }
+
+.image-content button:hover {
+    background-color: #525252;
+    color: white;
+}
+
 .gallery-title {
     /* border: 1px solid black; */
     text-align: center;
@@ -191,93 +231,113 @@ width: 100%;
     font-weight: bold;
     font-size: 20px;
 }
+
 .gallery-title p {
     padding: 10px;
-    margin: 30px;
+    margin: 30px auto; /* Center paragraph */
+    max-width: 800px; /* Control width */
 }
+
 .grid-gallery{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 10px;
     max-width: 1200px;
-    width: 100%;
+    width: 95%; /* Use percentage for responsiveness */
+    margin: 0 auto; /* Center gallery */
 }
+
 .grid-gallery img {
-    width: 350px;
-    height: auto;
-    object-fit: cover;
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio, object-fit might not be needed if aspect ratios are consistent */
+    object-fit: cover; 
     border-radius: 15px;
 }
 
 .discover-section{
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */ /* Consider auto height based on content */
+    padding: 60px 0; /* Added padding instead of fixed height */
     margin-top: 80px;
-
 }
+
 .discover-bg {
+    position: absolute; /* For background image */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: -1; /* Place behind content */
 }
+
 .discover-overlay{
-    position: absolute;
-    inset: 0;
+    position: relative; /* Changed from absolute if discover-bg is used as background */
+    /* inset: 0; */ /* Not needed if relative */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: #1a1a1a;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.7),rgba(255,255,255,0.9));
-    
+    /* background: linear-gradient(to bottom, rgba(255,255,255,0.7),rgba(255,255,255,0.9)); */ /* This will overlay on discover-bg */
+    padding: 20px; /* Added padding */
 }
 
 .discover-header {
     padding: 48px 0;
     max-width: 1200px;
+    width: 100%; /* Ensure it takes full width up to max-width */
     text-align: center;
     /* margin-bottom: 60px; */
 }
+
 .discover-title {
     font-size: 18px;
     margin-bottom: 10px;
-
+    color: #333; /* Slightly darker for better readability */
 }
+
 .discover-content {
     max-width: 900px;
-    margin: 0 5px;
+    margin: 0 auto; /* Center content */
+    width: 90%; /* Use percentage */
 }
-.descover-heading{
+
+.descover-heading{ /* Assuming 'descover-heading' is intended */
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
 }
-.discover-discription {
+
+.discover-discription { /* Assuming 'discover-discription' is intended */
     font-size: 16px;
     line-height: 1.8;
     letter-spacing: 0.5px;
-
 }
+
 .discover-features{
     position: relative;
     display: flex;
-    /* flex-direction:column; */
     justify-content: center;
-    align-items: center;
+    align-items: stretch; /* Align items by height */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
     gap: 40px;
-    /* border: 1px solid darkblue;3*/
+    /* border: 1px solid darkblue; */
     margin-top: 40px;
     margin-bottom: 70px;
-
 }
+
 .discover-feature {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     max-width: 300px;
+    flex-basis: 300px; /* Base width for flex items */
+    flex-grow: 1; /* Allow items to grow */
     /* border: 1px solid darkblue; */
 }
+
 .discover-icon{
     background-color: #110111;
     width: 64px;
@@ -287,8 +347,9 @@ width: 100%;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-
+    color: white; /* Added for icon visibility if it's a font icon */
 }
+
 .discover-text h3 {
     font-weight: bold;
     margin-bottom: 8px;
@@ -297,142 +358,412 @@ width: 100%;
 
 .cta{
     position: relative;
-    height: 60vh;
+    min-height: 60vh; /* Use min-height to allow content to expand */
+    height: auto; /* Adjust height based on content */
     width: 100%;
     overflow: hidden;
+    display: flex; /* Added for centering overlay */
+    align-items: center; /* Added for centering overlay */
+    justify-content: center; /* Added for centering overlay */
 }
+
 .cta-image {
+    position: absolute; /* Make it a background */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: 1; /* Behind overlay */
 }
+
 .cta-overlay {
-    position: absolute;
-    inset: 0;
-    background:linear-gradient(rgba(0,0,0,0.7));
+    position: relative; /* Relative to .cta */
+    z-index: 2; /* Above image */
+    /* inset: 0; */ /* Not needed if positioned by flex */
+    background: rgba(0,0,0,0.7); /* Simpler gradient */
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 40px 20px; /* Added padding */
+    width: 100%; /* Take full width of parent */
+    text-align: center; /* Center text */
 }
+
 .cta-content{
     display: flex;
+    flex-direction: column; /* Default to column for general structure */
     justify-content: space-between;
+    align-items: center; /* Center items */
     max-width: 1200px;
-    gap: 60px;
+    gap: 30px; /* Reduced gap */
     width: 100%;
 }
+
 .cta-title{
     font-size: 30px;
     font-weight: 600;
-    width: 100%;
+    /* width: 100%; */ /* Not needed if text-align center on parent */
     color: #cfd1ee;
-    align-self: center;
+    /* align-self: center; */ /* Not needed if parent is aligning */
 }
+
 .cta-text-button{
     width: 100%;
-
+    max-width: 600px; /* Limit width for readability */
 }
-.cta-discription {
-    font-size: 24px;
+
+.cta-discription { /* Assuming 'cta-discription' is intended */
+    font-size: 20px; /* Slightly reduced */
     color: #cfd1cc;
     line-height: 1.6;
     margin-bottom: 32px;
 }
+
 .cta-buttons {
     display: flex;
+    justify-content: center; /* Center buttons */
     gap: 20px;
+    flex-wrap: wrap; /* Allow buttons to wrap */
 }
-.cta-fild , .cta-outline {
-    width: 170px;
 
+.cta-fild , .cta-outline { /* Assuming 'cta-fild' is intended */
+    width: 170px;
 }
+
 .footer-section {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */ /* Often footer is last, no bottom margin needed */
     background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px;
+    padding: 20px 10px; /* Adjusted padding */
     /* margin-top: 40px; */
 }
+
 .footer-head{
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 20px; /* Add gap for wrapped items */
 }
+
 .footer-logo{
     font-size: 28px;
+    text-align: center; /* Center if it wraps */
+    width: 100%; /* Allow full width if it wraps alone */
 }
+
 .footer-logo span {
     color: rgba(255, 255, 255, 0.2);
     opacity: 0.9;
 }
+
+.footer-link {
+    width: 100%; /* Allow full width for centering */
+}
+
 .footer-link a{
     color: #ffffff;
-    /* background-color: #000; */
     display: flex;
     justify-content: center;
     align-items: center;
-   text-decoration: none;
+    text-decoration: none;
+    padding: 5px 0; /* Add some padding to links */
 }
+
 .footer-link ul{
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     list-style: none;
-    gap: 70px;
-
+    gap: 30px; /* Reduced gap */
+    flex-wrap: wrap; /* Allow wrapping */
+    padding: 0; /* Remove default ul padding */
 }
+
+.footer-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Center icons */
+    margin-top: 20px; /* Add space if footer-head wraps */
+}
+
 .footer-icon a{
     font-size: 26px;
     padding: 15px;
     color: #fff;
 }
+
 hr {
-    /* padding: 11px; */
-    margin: 10px;
+    margin: 20px 10px; /* Adjusted margin */
+    border-color: rgba(255,255,255,0.1); /* Lighter hr */
 }
-.footer-icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 .note{
     color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding:10px 190px;
-  text-align: center;
-  
+    display: flex; /* Not necessary for just text */
+    align-items: center; /* Not necessary for just text */
+    justify-content: center; /* Not necessary for just text */
+    padding:10px 20px; /* Adjusted padding */
+    text-align: center;
 }
-@media screen and (max-width:600px) {
-    .responsive {
-      width: 100%;
+
+/* ------------- MEDIA QUERIES FOR PHONE USERS ------------- */
+@media screen and (max-width: 768px) { /* Optional: A tablet breakpoint for intermediate adjustments */
+    .hero-content h1 {
+        font-size: 36px; /* Adjust for tablets */
+        gap: 20px;
     }
-  }
-.grid-gallery-tall{
-    padding: -20px;
-    grid-row: span 2;
-    margin-top:-48px;
-    grid-column: 10px;
+    .hero-title {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+    .descover-heading { /* Assuming 'descover-heading' */
+        font-size: 28px;
+    }
+    .cta-title {
+        font-size: 26px;
+    }
+    .cta-discription { /* Assuming 'cta-discription' */
+        font-size: 18px;
+    }
+    .image-content {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
+    .grid-gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
 }
+
+
+@media screen and (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%; /* Full width for centered links */
+        margin-top: 10px;
+    }
+    .nav-links a {
+        padding: 8px 0; /* Easier to tap */
+    }
+    .auth-button {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center; /* Center buttons */
+        width: 100%;
+        margin-top: 10px;
+    }
+    .btn-outline, .btn-filed {
+        width: 80%; /* Make buttons wider for easier tapping */
+        max-width: 250px; /* But not too wide */
+        text-align: center;
+    }
+
+    .hero-content h1{
+        font-size: 28px; /* Further reduce for phones */
+        gap: 15px;
+    }
+    .hero-title {
+        font-size: 16px;
+        margin-bottom: 24px;
+        padding: 10px;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center; /* Center buttons */
+    }
+    .hero-buttons .btn-outline, .hero-buttons .btn-filed { /* Target buttons specifically if needed */
+         width: 70%;
+    }
+
+    .title-content h2{
+        width: 90%;
+        font-size: 1.5em; /* Relative font size */
+        margin: 20px 0;
+        padding: 15px;
+    }
+
+    .image-content{
+        grid-template-columns: 1fr; /* Stack to single column */
+        gap: 15px;
+        padding: 10px;
+    }
+    .image-content img {
+        width: 100%; /* Ensure full width within the column */
+        height: auto;
+        max-width: none; /* Remove max-width if it conflicts */
+    }
+    .image-content1 {
+        padding: 15px;
+    }
+
+    .gallery-title {
+        margin-top: 60px;
+        font-size: 18px;
+    }
+    .gallery-title p {
+        margin: 20px auto;
+        font-size: 0.9em;
+    }
+
+    .grid-gallery{
+        grid-template-columns: 1fr; /* Stack to single column */
+        width: 95%;
+        gap: 10px;
+    }
+    .grid-gallery img {
+        border-radius: 10px; /* Slightly smaller radius */
+    }
+    /* Adjustments for specific grid items if they were meant for multi-column layouts */
+    .grid-gallery-tall, .grid-gallery-short {
+        grid-row: auto; /* Reset row span */
+        grid-column: auto; /* Reset column span */
+        margin-top: 0; /* Reset specific margins */
+        padding: 0; /* Reset specific paddings */
+    }
+    .grid-gallery-tall img, .grid-gallery-short img { /* Ensure images inside these behave like other gallery images */
+        margin-top: 0;
+        padding: 0;
+    }
+    /* Example: if grid-gallery-tall was an image meant to be taller */
+    /* You might need to ensure its aspect ratio is maintained or set a specific height if desired */
+
+
+    .discover-section {
+        padding: 40px 0;
+        margin-top: 40px;
+    }
+    .discover-header {
+        padding: 20px 0;
+    }
+    .descover-heading{ /* Assuming 'descover-heading' */
+        font-size: 24px;
+    }
+    .discover-discription { /* Assuming 'discover-discription' */
+        font-size: 14px;
+    }
+    .discover-features{
+        flex-direction: column; /* Stack features */
+        gap: 30px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+        align-items: center; /* Center features when stacked */
+    }
+    .discover-feature {
+        max-width: 90%; /* Allow features to take more width */
+        flex-basis: auto; /* Reset flex-basis */
+    }
+    .discover-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    .discover-text h3 {
+        font-size: 1.1em;
+    }
+
+
+    .cta {
+        min-height: 50vh;
+    }
+    .cta-overlay {
+        padding: 30px 15px;
+    }
+    .cta-content{
+        gap: 20px;
+    }
+    .cta-title{
+        font-size: 22px;
+    }
+    .cta-text-button {
+        max-width: 100%; /* Allow full width */
+    }
+    .cta-discription { /* Assuming 'cta-discription' */
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+    .cta-buttons {
+        flex-direction: column; /* Stack buttons */
+        gap: 15px;
+        align-items: center; /* Center buttons */
+    }
+    .cta-fild, .cta-outline { /* Assuming 'cta-fild' */
+        width: 80%; /* Make buttons wider */
+        max-width: 280px;
+    }
+
+    .footer-head{
+        flex-direction: column;
+        gap: 15px;
+        text-align: center; /* Center text when stacked */
+        padding: 15px;
+    }
+    .footer-logo {
+        font-size: 24px;
+    }
+    .footer-link ul{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .footer-icon {
+        margin-top: 15px;
+    }
+    .footer-icon a {
+        font-size: 22px;
+        padding: 10px;
+    }
+    hr {
+        margin: 15px 10px;
+    }
+    .note{
+      padding:10px 15px;
+      font-size: 0.85em;
+    }
+    .change {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .change a {
+        padding: 8px;
+        margin: 5px;
+    }
+}
+
+.grid-gallery-tall{
+    /* padding: -20px; */ /* Negative padding is unusual, consider what this was for */
+    grid-row: span 2;
+    /* margin-top:-48px; */ /* These might conflict with mobile stacking */
+    /* grid-column: 10px; */ /* This is an invalid value for grid-column */
+}
+
 .grid-gallery-short{
-    padding-top: 20px;
-    padding-bottom: 20px;
-}  
+    /* padding-top: 20px; */ /* These might conflict with mobile stacking */
+    /* padding-bottom: 20px; */
+}
+
 .change {
     display: flex;
     justify-content: space-between;
-   }
+}
+
 .change a{
     font-weight: bold;
     padding: 10px;
     margin: 10px;
-    font-family: pacifico;
+    font-family: 'Pacifico', cursive; /* Ensure Pacifico is correctly specified */
     color: black;
     text-decoration: none;
 }
-   
