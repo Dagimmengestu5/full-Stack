@@ -124,5 +124,17 @@ function withdrawMoney(user) {
   );
 }
 
+function transferMoney(sender) {
+    const recipuentAccount = prompt("enter the reciver 8 digit account number: ")
+    const recipient = users.find(
+        return user.accountNumber === recipuentAccount && user.accountNumber !== sender.accountNumber
+    )
+    if (!recipient){
+        console.log("recipent not found not transfer Data")
+        return
+    }
+    const amount = parseFloat(prompt(`Enter amount to transfer to ${recipient.name}, Account no: ${recipient.accountNumber}`))
+    if (isNaN(amount))
+}
 // ✅ Start the program
 runBankProgram();
