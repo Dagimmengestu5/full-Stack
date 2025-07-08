@@ -353,7 +353,7 @@
 
 // // console.log(person.greetPeople("abebe"))
 
-// s
+// sd c
 
 const newDiv = document.createElement("div")
 const parent = document.querySelector(".parent-container")
