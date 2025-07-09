@@ -172,5 +172,5 @@ container.insertBefore(listItem,firstChilde)
 // 5. add eventListenr()
 // 6. removeEventListener()
 // 7.event object
-// 8.different types of events xcvqwwqqwwwew
+// 8.different types of events xcvqwwewqqwwwew
 
