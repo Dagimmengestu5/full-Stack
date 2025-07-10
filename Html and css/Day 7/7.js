@@ -33,7 +33,7 @@ const newDiv = document.createElement("div")
 
 const parent = document.querySelector(".parent-container")
 // newDiv.textContent = "hey there am the new div"
-newDiv.textContent = "<h1>hey there</h1>"
+newDiv.innerHTML = "<h1>hey there 11</h1>"
 parent.appendChild(newDiv)
 parent.prepend(newDiv)
 
