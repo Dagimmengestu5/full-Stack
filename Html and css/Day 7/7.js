@@ -26,7 +26,7 @@ const allspecialParagraph = document.querySelectorAll(".special")
 
 // const parent = document.querySelector(".parent-container")
 // const allChildren = parent.children;
-// console.log(parent,allChildren)dsdssdsdfddsdsdfwdse
+// console.log(parent,allChildren)dsdssdsdfdddfsdsdfwdse
 
 
 const newDiv = document.createElement("div")
