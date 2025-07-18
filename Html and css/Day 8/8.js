@@ -6,7 +6,7 @@ const emptyStatus = document.getElementById("emptyStatus")
 const totoalTasks = document.getElementById("totalTasks")
 const completesTask = document.getElementById("complitedTask")
 
-//gfdhhgghfggfgf
+//gfdhhgghfggfgfgf
 
 let todos = []
 function addTodo () {
