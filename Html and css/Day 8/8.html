@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="8.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    <div class="todo-app">
+        <!-- header section -->
+        <div class="header">
+            <h1 class="title">my beutiful todo</h1>
+            <p>Stsy organizes a prodactive</p>
+        </div>
+        <div class="input-section">
+            <div class="input-container">
+                <input type="text" id="todoInput" placeholder="what need to be done" class="todo-input">
+                <!-- button  -->
+                 <button class="add-btn" id="addBtn">
+                    <span class="plas-icon">+</span>
+                 </button>
+            </div>
+        </div>
+        <!-- todo  -->
+
+        <div class="todos-section">
+            <div class="todos-header">
+                <h3 class="todos-title">Task</h3>
+                <button class="clear-button" id="clearCompleted">Clear completed</button>
+            </div>
+        </div>
+        <ul id="todoList" class="todo-list">
+
+        </ul>
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon">no</div>
+        <p>no todo yet. Add one Above</p>
+        </div>
+        <div class="stats">
+            <span id="totalTassks">0 complit 0 start</span>
+        </div>
+    </div>
+    </div>
+<script src="./8.js"></script>
+</body>
+</html>
