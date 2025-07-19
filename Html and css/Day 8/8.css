@@ -3,9 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-html{
-    font-size: 10px;
-}
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to bottom right , #667eea 0%, #764ba2 100%);
@@ -18,7 +15,7 @@ body{
 }
 .container{
     width: 100%;
-    max-width: 350px;
+    max-width: 600px;
     margin: 0 auto;
     /* background-color: aliceblue; */
 
@@ -34,7 +31,7 @@ body{
     text-align: center;
     margin-bottom: 40px;
     color: #718096;
-    font-size: 2.1rem;
+    font-size: 1.1rem;
     font-weight: 400;
 
     
@@ -43,10 +40,16 @@ body{
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
+    color: #2d3748;
     margin-bottom: 8px;
 }
 .input-section{
     margin-bottom: 30px;
+}
+.input-container{
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 .todo-input{
     flex: 1;
@@ -110,9 +113,14 @@ body{
     gap: 12px;
 }
 .todo-item{
-    background-color: #2d3745;
+    background-color: rgba(255, 2555, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 2555, 255, 0.3);
+    border-radius: 12px;
+    padding: 18px 20px;
+    gap: 15px;
 }
-.empty-tate{
+.empty-state{
     text-align: center;
     padding: 60px 20px;
     color: #a0aec0;
@@ -121,9 +129,11 @@ body{
     font-size: 3rem;
     margin-bottom: 16px;
 }
-.state{
+.stats{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: #718096;
 }

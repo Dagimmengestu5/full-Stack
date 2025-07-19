@@ -20,23 +20,28 @@ function addTodo () {
 
     }
     todos.push(todoObject)
+
+
     todoInput.value = ""
     console.log(todos)
 }
 
 
 addBtn.addEventListener("click" ,addTodo)
-
+todoInput.addEventListener("keypress",(e)=>{
+    if( e.key === "Enter"){
+        addTodo()
+    }
+})
 
 function createElement(todoItem) {
-    
-    console.log(text,)
+    console.log(todoItem,text,todoItem.createdAt)
     
     
     const listItem = document.createElement("li")
-    listItem.className = "todo-item"
-    listItem.innerHTML = "<div> <span>List item <spam></div>"
-    listItem;
+    listItem.className = `todo-item ${todoItem.completed ? "complited" : " "}`
+    listItem.innerHTML = `<div> <span>${todoItem.text}<spam></div>`
+    return listItem;
 }
 
 console.log(todoList,addBtn,clearCompleted,todoList,emptyStatus,totoalTasks,completesTask)
