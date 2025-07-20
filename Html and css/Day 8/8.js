@@ -1,4 +1,4 @@
-const dodoInput = document.getElementById("todoInput")
+const todoInput = document.getElementById("todoInput")
 const addBtn = document.getElementById("addBtn")
 const clearCompleted = document.getElementById("clearComplited")
 const todoList = document.getElementById("todoList")
@@ -6,7 +6,7 @@ const emptyStatus = document.getElementById("emptyStatus")
 const totoalTasks = document.getElementById("totalTasks")
 const completesTask = document.getElementById("complitedTask")
 
-//gfdhhgghfggfgfgf
+//gfdhhgghfggfgfgffg
 
 let todos = []
 function addTodo () {
