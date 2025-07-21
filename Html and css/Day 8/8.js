@@ -4,7 +4,7 @@ const clearCompleted = document.getElementById("clearComplited")
 const todoList = document.getElementById("todoList")
 const emptyStatus = document.getElementById("emptyStatus")
 const totoalTasks = document.getElementById("totalTasks")
-const completesTask = document.getElementById("complitedTask")
+const completedTask = document.getElementById("complitedTask")
 
 //gfdhhgghfggfgfgffg
 
