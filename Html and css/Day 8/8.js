@@ -50,7 +50,7 @@ function addTodo () {
     todoInput.value = ""
     console.log(todos)
 }
-//ff111dffdvcaddsfdfdsaszxcvxcda
+//ff111dffdvcadds
 
 addBtn.addEventListener("click" ,addTodo)
 todoInput.addEventListener("keypress",(e)=>{
