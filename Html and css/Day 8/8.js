@@ -9,40 +9,40 @@ const completedTask = document.getElementById("complitedTask")
 //gfdhhgghfggfgfgffgfd
 
 let todos = []
-function addTodo () {
-    const todoText = todoInput.value.trim()
-    console.log(todoText)
+// function addTodo () {
+//     const todoText = todoInput.value.trim()
+//     console.log(todoText)
 
-    const todoObject = {
-        text:todoText,
-        completed:false,
-        createdAt:new Date()
+//     const todoObject = {
+//         text:todoText,
+//         completed:false,
+//         createdAt:new Date()
 
-    }
-    todos.push(todoObject)
+//     }
+//     todos.push(todoObject)
 
 
-    todoInput.value = ""
-    console.log(todos)
-}
-//ff111dffdvcaddsfdfdsaszxcvxcda
+//     todoInput.value = ""
+//     console.log(todos)
+// }
+// //ff111dffdvcaddsfdfdsaszxcvxcda
 
-addBtn.addEventListener("click" ,addTodo)
-todoInput.addEventListener("keypress",(e)=>{
-    if( e.key === "Enter"){
-        addTodo()
-    }
-})
+// addBtn.addEventListener("click" ,addTodo)
+// todoInput.addEventListener("keypress",(e)=>{
+//     if( e.key === "Enter"){
+//         addTodo()
+//     }
+// })
 
-function createElement(todoItem) {
-    console.log(todoItem,text,todoItem.createdAt)
+// function createElement(todoItem) {
+//     console.log(todoItem,text,todoItem.createdAt)
     
     
-    const listItem = document.createElement("li")
-    listItem.className = `todo-item ${todoItem.completed ? "complited" : " "}`
-    listItem.innerHTML = `<div> <span>${todoItem.text}<spam></div>`
-    return listItem;
-}
+//     const listItem = document.createElement("li")
+//     listItem.className = `todo-item ${todoItem.completed ? "complited" : " "}`
+//     listItem.innerHTML = `<div> <span>${todoItem.text}<spam></div>`
+//     return listItem;
+// }
 
 console.log(todoList,addBtn,clearCompleted,todoList,emptyStatus,totoalTasks,completesTask)
 console.log("hi")
