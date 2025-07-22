@@ -69,7 +69,7 @@ function createElement(todoItem) {
     return listItem;
 }
 
-console.log(todoList,addBtn,clearCompleted,todoList,emptyStatus,totoalTasks,completesTask)
+console.log(todoList,addBtn,clearCompleted,todoList,emptyStatus,totoalTasks,completedTask)
 console.log("hi")
 
 
