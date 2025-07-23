@@ -73,7 +73,7 @@ console.log(todoList,addBtn,clearCompleted,todoList,emptyStatus,totoalTasks,comp
 console.log("hi")
 
 
-// // Select Dom Elements
+// // Select Dom Elements s
 
 // const todoInput = document.getElementById("todoInput")
 // const addBtn = document.getElementById("addBtn")
