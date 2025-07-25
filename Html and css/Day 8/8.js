@@ -1,17 +1,23 @@
+// Select Dom Elements
+
 const todoInput = document.getElementById("todoInput")
 const addBtn = document.getElementById("addBtn")
-const clearCompleted = document.getElementById("clearComplited")
+const clearButton = document.getElementById("clearCompleted")
 const todoList = document.getElementById("todoList")
-const emptyStatus = document.getElementById("emptyStatus")
-const totoalTasks = document.getElementById("totalTasks")
-const completedTask = document.getElementById("complitedTask")
+const emptyState = document.getElementById("emptyState")
+const totalTask = document.getElementById("totalTasks")
+const completedTasks = document.getElementById("completedTask")
 
-//gfdhhgghfggfgfgffgfd
+console.log(todoInput)
 
-let todos = []
+// store todos in array fgfggg
+
+let todos = [];
 
 
 function renderTodos(){
+  // 
+
   todoList.innerHTML = "";
 
   todos.forEach((todo,idx)=>{
@@ -19,11 +25,14 @@ function renderTodos(){
     todoList.appendChild(item);
   })
 
+  
   if(todos.length === 0){
     emptyState.style.display = "block";
   }else{
     emptyState.style.display = "none"
   }
+
+  
   // update the stats
 
     totalTask.textContent = `${todos.length} tasks`
@@ -32,184 +41,114 @@ function renderTodos(){
 
     completedTasks.textContent = `${completedCount} completed`
 
+
+
 }
 
-function addTodo () {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function addTodo(){
     const todoText = todoInput.value.trim()
-    console.log(todoText)
+  const todObject = {
+    text:todoText,
+    completed:false,
+    createdAt:new Date()
+  }
+  todos.push(todObject)
+  // createElement(todObject)
+  todoInput.value = "";
 
-    const todoObject = {
-        text:todoText,
-        completed:false,
-        createdAt:new Date()
 
-    }
-    todos.push(todoObject)
+  renderTodos()
 
-
-    todoInput.value = ""
-    console.log(todos)
 }
-//ff111dffdvcaddsf
 
-addBtn.addEventListener("click" ,addTodo)
+addBtn.addEventListener("click",addTodo)
+
 todoInput.addEventListener("keypress",(e)=>{
-    if( e.key === "Enter"){
+
+    if(e.key === "Enter"){
         addTodo()
     }
 })
 
-function createElement(todoItem) {
-    console.log(todoItem,text,todoItem.createdAt)
-    
-    
+
+function createElement(todoItem,idx){
+
+    // console.log(todoItem.text,todoItem.createdAt)
     const listItem = document.createElement("li")
-    listItem.className = `todo-item ${todoItem.completed ? "complited" : " "}`
-    listItem.innerHTML = `<div> <span>${todoItem.text}<spam></div>`
-    return listItem;
+    listItem.className = `todo-item   ${todoItem.completed ? "completed" : " "}`
+
+
+  // checkbox
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+
+  checkbox.checked = todoItem.completed;
+
+  checkbox.addEventListener("change",()=>{
+    todos[idx].completed = checkbox.checked
+    renderTodos()
+  })
+
+  const span = document.createElement("span")
+  span.textContent = todoItem.text;
+  
+  listItem.appendChild(checkbox)
+  listItem.appendChild(span)
+
+
+    // listItem.innerHTML  = `<div> <span>${todoItem.text}</span></div>`
+
+    // console.log(listItem)
+
+   return listItem;
 }
 
-console.log(todoList,addBtn,clearCompleted,todoList,emptyStatus,totoalTasks,completedTask)
-console.log("hi")
 
 
-// // Select Dom Elements s2ssssdssse
+clearButton.addEventListener("click",()=>{
 
-// const todoInput = document.getElementById("todoInput")
-// const addBtn = document.getElementById("addBtn")
-// const clearButton = document.getElementById("clearCompleted")
-// const todoList = document.getElementById("todoList")
-// const emptyState = document.getElementById("emptyState")
-// const totalTask = document.getElementById("totalTasks")
-// const completedTasks = document.getElementById("completedTask")
+  console.log("clicked on clear button")
+  todos = todos.filter((todo)=>{ 
+    if(!todo.completed){
+      console.log("hello there")
+      return todo
+    }
+  })
 
-// console.log(todoInput)
-
-// // store todos in array
-
-// let todos = [];
-
-
-// function renderTodos(){
-//   // 
-
-//   todoList.innerHTML = "";
-
-//   todos.forEach((todo,idx)=>{
-//     const item = createElement(todo,idx)
-//     todoList.appendChild(item);
-//   })
-
-  
-//   if(todos.length === 0){
-//     emptyState.style.display = "block";
-//   }else{
-//     emptyState.style.display = "none"
-//   }
-
-  
-//   // update the stats
-
-//     totalTask.textContent = `${todos.length} tasks`
-
-//     const completedCount = todos.filter(item => item.completed).length;
-
-//     completedTasks.textContent = `${completedCount} completed`
+   renderTodos()
+})
 
 
 
-// }
+renderTodos()
+
+//steps to look after
+//1.capture the value from our input
+//2.prepare our input for the next task
+//3.rendering our task
+//4.after a user completes a task he/she will mark it out
+//5.clear completed task
+//6 update our stats dom element
 
 
-
-// function addTodo(){
-//     const todoText = todoInput.value.trim()
-//   const todObject = {
-//     text:todoText,
-//     completed:false,
-//     createdAt:new Date()
-//   }
-//   todos.push(todObject)
-//   // createElement(todObject)
-//   todoInput.value = "";
-
-
-//   renderTodos()
-
-// }
-
-// addBtn.addEventListener("click",addTodo)
-
-// todoInput.addEventListener("keypress",(e)=>{
-
-//     if(e.key === "Enter"){
-//         addTodo()
-//     }
-// })
-
-
-// function createElement(todoItem,idx){
-
-//     // console.log(todoItem.text,todoItem.createdAt)
-//     const listItem = document.createElement("li")
-//     listItem.className = `todo-item   ${todoItem.completed ? "completed" : " "}`
-
-
-//   // checkbox
-//   const checkbox = document.createElement("input");
-//   checkbox.type = "checkbox";
-
-//   checkbox.checked = todoItem.completed;
-
-//   checkbox.addEventListener("change",()=>{
-//     todos[idx].completed = checkbox.checked
-//     renderTodos()
-//   })
-
-//   const span = document.createElement("span")
-//   span.textContent = todoItem.text;
-  
-//   listItem.appendChild(checkbox)
-//   listItem.appendChild(span)
-
-
-//     // listItem.innerHTML  = `<div> <span>${todoItem.text}</span></div>`
-
-//     // console.log(listItem)
-
-//    return listItem;
-// }
-
-
-
-// clearButton.addEventListener("click",()=>{
-
-//   console.log("clicked on clear button")
-//   todos = todos.filter((todo)=>{ 
-//     if(!todo.completed){
-//       console.log("hello there")
-//       return todo
-//     }
-//   })
-
-//    renderTodos()
-// })
-
-
-
-// renderTodos()
-
-// //steps to look after
-// //1.capture the value from our input
-// //2.prepare our input for the next task
-// //3.rendering our task
-// //4.after a user completes a task he/she will mark it out
-// //5.clear completed task
-// //6 update our stats dom element
-
-
-// // 
-// //array
+// 
+//array
 
 
 
@@ -218,7 +157,7 @@ console.log("hi")
 
 
 
-// // console.log(todoInput,addBtn,clearButton,todoList,emptyState,totalTask,completedTasks)
+// console.log(todoInput,addBtn,clearButton,todoList,emptyState,totalTask,completedTasks)
 
-// // Select Dom Elements
+// Select Dom Elements
 
