@@ -114,7 +114,7 @@ function createElement(todoItem,idx){
 
     // listItem.innerHTML  = `<div> <span>${todoItem.text}</span></div>`
 
-    // console.log(listItem)sfgfdsfdsddsgddddsfdfsdsddfdfdfdfdfdf
+    // console.log(listItem)sfgfdsfdsddsgddxddsfdfsdsddfdfdfdfdfdf
 bv
    return listItem;
 }
